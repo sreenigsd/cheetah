@@ -1,5 +1,6 @@
 # Cheetah
-![Cheetah](https://confluence.sreenidhi-gsd.com/download/attachments/17399810/cheetah-dark.gif?version=1&modificationDate=1564150406999&api=v2)
+
+<img src="https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif" align="center" height="200" width="480" >
 
 Cheetah is a **test automation framework** that has been developed to help automate testing efforts across multiple technologies including Web, Mobile, WebServices, Database, Mainframe, etc..
 
@@ -7,10 +8,10 @@ Cheetah is a **test automation framework** that has been developed to help autom
 <!-- Build Status -->
 <a href="https://bamboo.sreenidhi-gsd.com/browse/Cheetah-BP"><img src="https://bamboo.sreenidhi-gsd.com/plugins/servlet/wittified/build-status/Cheetah-BP"></a>
 
- <!-- License -->
+ <!-- License 
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202-blue.svg"
       alt="License"/></a>
-</div>
+</div> -->
    
 ## Motivation
 
