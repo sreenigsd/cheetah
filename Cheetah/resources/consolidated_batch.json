@@ -1,0 +1,28 @@
+{
+  "@type": "com.github.mkolisnyk.cucumber.reporting.types.consolidated.ConsolidatedReportBatch", 
+  "models": [
+    {
+      "items": [
+      {
+          "path": "target//header.html", 
+          "title": "Consolidated Report"
+       }, 
+        {
+          "path": "target//cucumber-results-feature-overview.html", 
+          "title": "Overview Report"
+        }, 
+       
+        {
+          "path": "target//cucumber-results-agg-test-results.html", 
+          "title": "Detailed Results"
+        }
+       
+      ], 
+      "reportSuffix": "batch-config1", 
+      "title": "Overall Results Batch 1", 
+      "useTableOfContents": false
+    }
+   ]
+}
+
+  

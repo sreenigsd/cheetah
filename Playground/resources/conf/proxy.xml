@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy-config>
+	
+	<use-proxy>false</use-proxy>
+	<proxy-host>my-proxy-url.com</proxy-host>
+	<proxy-port>1234</proxy-port>
+	
+	<use-proxy-pac>false</use-proxy-pac>
+	<proxy-pac-url>http://my.proxy-pac.com/proxy.pac</proxy-pac-url>	
+	
+	<proxy-auth-username>username</proxy-auth-username>
+	<proxy-auth-password>p@ssW0rd</proxy-auth-password>
+	<!-- 
+		<proxy-pac-url>file://resources\\settings\\proxy.pac</proxy-pac-url>
+	 -->
+</proxy-config>

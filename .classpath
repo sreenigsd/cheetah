@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="fabrics-port-listener/src/main/java"/>
+	<classpathentry kind="src" path="FABRICS/src/main/java"/>
+	<classpathentry kind="lib" path="fabrics-port-listener/target/fabrics-port-listener-null.jar"/>
+	<classpathentry kind="output" path="fabrics-port-listener/target/classes"/>
+</classpath>

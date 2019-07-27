@@ -1,0 +1,31 @@
+<table style="table-layout: fixed;" border="1" width="90%" align="center" bgcolor="#FFFFFF">
+<tbody>
+<tr bgcolor="#5e72e4">
+<th align="left"><span style="color: #ffffff;"> Test Automation Framework </span></th>
+</tr>
+<tr>
+<td align="left"><br />
+<div>MESSAGE_BODY_SAMPLE.</div>
+</td>
+</tr>
+<tr bgcolor="#5e72e4">
+<td align="left">
+<table width="100%">
+<tbody>
+<tr>
+<td><span style="color: #ffffff;"> <br /> -- Mail Handler </span></td>
+<td><img src="https://www.sreenidhi-gsd.com/resources/assets/img/brand/white.png" width="100" align="right" /></td>
+</tr>
+</tbody>
+</table>
+</td>
+</tr>
+</tbody>
+</table>
+<table width="90%" align="center">
+<tbody>
+<tr align="center">
+<td style="width=100%; font-size: 12px; color: #424242;"><br />This is an automated message. <br />Please do not reply to this email. <br />Please contact the framework <strong>Administrator</strong> if you require assistance.</td>
+</tr>
+</tbody>
+</table>
