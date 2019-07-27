@@ -1,6 +1,6 @@
 # Cheetah
 
-<img src="https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif" align="center" height="200" width="480" >
+<img src="https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif" height="200" width="480" />
 
 Cheetah is a **test automation framework** that has been developed to help automate testing efforts across multiple technologies including Web, Mobile, WebServices, Database, Mainframe, etc..
 
@@ -10,8 +10,8 @@ Cheetah is a **test automation framework** that has been developed to help autom
 
  <!-- License 
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202-blue.svg"
-      alt="License"/></a>
-</div> -->
+      alt="License"/></a>-->
+</div> 
    
 ## Motivation
 
