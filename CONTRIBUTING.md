@@ -1,12 +1,12 @@
-## How to contribute to FABRICS
+## How to contribute to the Cheetaah Automation Framework
 
 #### **Did you find a bug?**
 
 * **Do not open up an issue if you are not confident that you have a bug**
 
-* **Ensure the bug was not already reported** by searching on JIRA under [Issues](https://jira.fs.corpintra.net/projects/FABRICS/issues) or Contact the DevOps team for support.
+* **Ensure the bug was not already reported** by searching on JIRA under [Issues](https://jira.sreenidhi-gsd.com/projects/CHEETAH/issues) or Contact the Administrator team for support.
 
-* If you're unable to find an open issue addressing the problem, [open a new one](https://jira.fs.corpintra.net/projects/FABRICS). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
+* If you're unable to find an open issue addressing the problem, [open a new one](https://jira.sreenidhi-gsd.com/projects/CHEETAH). Be sure to include a **title and clear description**, as much relevant information as possible, and a **code sample** or an **executable test case** demonstrating the expected behavior that is not occurring.
 
 * If possible, write the algorithm or code that needs to be implemented to resolve the issue and **paste the content into the issue description**:
   
@@ -22,22 +22,22 @@
 
 #### **Did you fix whitespace, format code, or make a purely cosmetic patch?**
 
-Changes that are cosmetic in nature and do not add anything substantial to the stability, functionality, or testability of FABRICS will generally not be accepted.
+Changes that are cosmetic in nature and do not add anything substantial to the stability, functionality, or testability of the framework are generally slower to be accepted.
 
 #### **Do you intend to add a new feature or change an existing one?**
 
-* Suggest your changes to FABRICS in the Merge Request of your forked project and start writing code.
+* Suggest your changes to the framework in the (Merge) Pull Request of your forked project and start writing code.
 
-* Do not open an issue on JIRA until you have collected positive feedback about the change. All changes to FABRICS code must be recorded in JIRA. Changes will not be accepted without a corresponding ticket in JIRA.
+* Do not open an issue on JIRA until you have collected positive feedback about the change. All changes to Cheetah code must be recorded in JIRA. Changes will not be accepted without a corresponding ticket in JIRA.
 
 #### **Do you have questions about the source code?**
 
-* Ask any question about how to use FABRICS in the [DevOps Jive Site](https://social.intra.corpintra.net/groups/mbfs-devops).
+* Ask any question about how to use CHEETAH in the [Support Site](https://confluence.sreenidhi-gsd.com/display/CHEETAH)
 
-#### **Do you want to contribute to the FABRICS documentation?**
+#### **Do you want to contribute to the CHEETAH documentation?**
 
-FABRICS is open to volunteer effort. We encourage you to pitch in and [join the team](https://social.intra.corpintra.net/groups/mbfs-devops)
+CHEETAH is open to volunteer effort. We encourage you to pitch in and [join the team](https://confluence.sreenidhi-gsd.com/display/CHEETAH)
 
 Thanks! :heart: :heart: :heart:
 
-DevOps Team
+- Gundlupet Sreenidhi
