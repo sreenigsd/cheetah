@@ -3,8 +3,8 @@
 	<send-mail>true</send-mail>
 	<smtp-host>sreenidhi-gsd.com</smtp-host>
 	<smtp-port>2500</smtp-port>
-	<smtp-username>sreenigsd</smtp-username>
-	<smtp-password>2281987spk</smtp-password>
+	<smtp-username>username</smtp-username>
+	<smtp-password>password</smtp-password>
 	
 	<retrieve-credential-from-file>false</retrieve-credential-from-file>
 	<smtp-credential-file>resources\\settings\\credential.file</smtp-credential-file>
