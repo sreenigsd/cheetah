@@ -14,7 +14,7 @@
 
 	<profiles>
 		<profile>
-			<id>BUILD</id>
+			<id>TAG</id>
 			<properties>
 				<tag>,tags=${execution.tag}</tag>
 				<runner>CucumberRunnerTest.java</runner>
