@@ -10,8 +10,8 @@ Cheetah is a **test automation framework** that has been developed to help autom
 
  <!-- License 
   <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202-blue.svg"
-      alt="License"/></a>
-</div> -->
+      alt="License"/></a>-->
+</div> 
    
 ## Motivation
 
