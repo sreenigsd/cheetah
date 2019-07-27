@@ -1,5 +1,4 @@
 # Cheetah
-![Cheetah](https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif)
 
 <img src="https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif" align="center" height="200" width="480" >
 
