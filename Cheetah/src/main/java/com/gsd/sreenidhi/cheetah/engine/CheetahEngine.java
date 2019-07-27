@@ -244,8 +244,30 @@ public class CheetahEngine {
 				false);
 		
 		props = prop;
+		validateProperties(prop);
+		
 		return prop;
 
+	}
+
+	/**
+	 * @param prop Properties
+	 * @throws CheetahException Generic Exception Object that handles all exceptions
+	 */
+	private static void validateProperties(Properties prop) throws CheetahException {
+		boolean validProp = true;
+		if(prop.getProperty("app.name")==null
+				|| prop.getProperty("features")==null
+				|| prop.getProperty("glue")==null) {
+			validProp = false;
+		}
+		
+		if(!validProp) {
+			logger.logMessage(null, "CheetahEngine", "Missing required Properties. Please check your configuration and try again...", Constants.LOG_FATAL,
+					false);
+			System.exit(1);
+		}
+		
 	}
 
 	/**
