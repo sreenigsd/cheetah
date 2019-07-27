@@ -1,5 +1,5 @@
 # Cheetah
-![Cheetah](https://confluence.sreenidhi-gsd.com/download/attachments/17399810/cheetah-dark.gif)
+![Cheetah](https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif)
 
 Cheetah is a **test automation framework** that has been developed to help automate testing efforts across multiple technologies including Web, Mobile, WebServices, Database, Mainframe, etc..
 
