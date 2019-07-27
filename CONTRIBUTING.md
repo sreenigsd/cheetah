@@ -1,4 +1,4 @@
-## How to contribute to the Cheetaah Automation Framework
+## How to contribute to the CHEETAH Automation Framework
 
 #### **Did you find a bug?**
 
