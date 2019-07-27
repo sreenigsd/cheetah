@@ -40,4 +40,4 @@ CHEETAH is open to volunteer effort. We encourage you to pitch in and [join the 
 
 Thanks! :heart: :heart: :heart:
 
-- Gundlupet Sreenidhi
+--Gundlupet Sreenidhi
