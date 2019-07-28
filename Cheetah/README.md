@@ -8,10 +8,7 @@ Cheetah is a **test automation framework** that has been developed to help autom
 <!-- Build Status -->
 <a href="https://bamboo.sreenidhi-gsd.com/browse/Cheetah-BP"><img src="https://bamboo.sreenidhi-gsd.com/plugins/servlet/wittified/build-status/Cheetah-BP"></a>
 
- <!-- License 
-  <a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/badge/license-Apache%202-blue.svg"
-      alt="License"/></a>-->
-</div> 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)</div> 
    
 ## Motivation
 
