@@ -9,6 +9,9 @@
 	<packaging>jar</packaging>
 
 	<name>Cheetah</name>
+	<description>
+    	A Java framework that provides complete end-to-end automation functionality using Cucumber JVM to interface with Selenium, Appium and Java Core Technologies
+  	</description>
 	<url>https://github.com/sreenigsd/cheetah</url>
 
 	<licenses>
