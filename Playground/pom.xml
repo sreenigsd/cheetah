@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.gsd.sreenidhi</groupId>
@@ -8,7 +9,7 @@
 
 	<properties>
 		<project.name>Playground</project.name>
-		<cheetah.version>1.0.0</cheetah.version>
+		<cheetah.version>1.0.0-SNAPSHOT</cheetah.version>
 		<tag></tag>
 	</properties>
 
@@ -44,53 +45,79 @@
 
 
 	<dependencies>
+
 		<dependency>
 			<groupId>com.sreenidhi-gsd</groupId>
 			<artifactId>cheetah</artifactId>
 			<version>${cheetah.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.db2.jcc</groupId>
+			<artifactId>db2jcc4</artifactId>
+			<version>10.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/db2jcc4-10.1.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2jcc</artifactId>
+			<version>8.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/db2jcc-8.1.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2jcc_license_cu</artifactId>
+			<version>8.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/db2jcc_license_cu-8.1.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>ojdbc14_g</artifactId>
+			<version>10.2.0.4</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/ojdbc14_g-10.2.0.4.jar</systemPath>
+		</dependency>
+
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/DB2/db2jcc4 -->
-		<dependency>
-			<groupId>com.ibm.db2.jcc</groupId>
-			<artifactId>db2jcc4</artifactId>
-			<version>10.1</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/DB2/db2jcc4 <dependency> <groupId>com.ibm.db2.jcc</groupId> 
+			<artifactId>db2jcc4</artifactId> <version>10.1</version> </dependency> -->
 
-		<!-- https://mvnrepository.com/artifact/DB2/db2jcc -->
-		<dependency>
-			<groupId>com.ibm.db2</groupId>
-			<artifactId>db2jcc</artifactId>
-			<version>8.1</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/DB2/db2jcc <dependency> <groupId>com.ibm.db2</groupId> 
+			<artifactId>db2jcc</artifactId> <version>8.1</version> </dependency> -->
 
-		<!-- https://mvnrepository.com/artifact/DB2/db2jcc_license_cu -->
-		<dependency>
-			<groupId>com.ibm.db2</groupId>
-			<artifactId>db2jcc_license_cu</artifactId>
-			<version>8.1</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/DB2/db2jcc_license_cu <dependency> 
+			<groupId>com.ibm.db2</groupId> <artifactId>db2jcc_license_cu</artifactId> 
+			<version>8.1</version> </dependency> -->
 
+		<!-- <dependency> <groupId>oracle</groupId> <artifactId>ojdbc14_g</artifactId> 
+			<version>10.2.0.4</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
 			<artifactId>mssql-jdbc</artifactId>
-			<version>6.2.1.jre8</version>
+			<version>7.2.2.jre8</version>
+			<scope>test</scope>
 		</dependency>
+
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.8-dmr</version>
+			<classifier>dmr</classifier>
 		</dependency>
-		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>ojdbc14_g</artifactId>
-			<version>10.2.0.4</version>
-		</dependency>
+
+
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
@@ -110,8 +137,8 @@
 
 	<build>
 		<plugins>
-		
-		<plugin>
+
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>properties-maven-plugin</artifactId>
 				<version>1.0.0</version>
@@ -129,7 +156,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
@@ -142,10 +169,12 @@
 						</goals>
 						<configuration>
 							<target>
-								<delete>
-									<fileset dir="resources" includes="consolidated_batch.json" />
+								<delete failonerror="false">
+									<fileset dir="resources"
+										includes="consolidated_batch.json" />
 									<fileset dir="resources" includes="scripts/*.*" />
 									<fileset dir="src" includes="*.properties" />
+									<fileset dir="lib" includes="*.jar" />
 									<fileset dir="src/test/java/connector"
 										includes="*.java" />
 								</delete>
@@ -174,6 +203,13 @@
 									<version>${cheetah.version}</version>
 									<outputDirectory>src\test\java\connector</outputDirectory>
 									<includes>${runner}</includes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.sreenidhi-gsd</groupId>
+									<artifactId>cheetah</artifactId>
+									<version>${cheetah.version}</version>
+									<outputDirectory>lib</outputDirectory>
+									<includes>*.jar</includes>
 								</artifactItem>
 								<artifactItem>
 									<groupId>com.sreenidhi-gsd</groupId>
