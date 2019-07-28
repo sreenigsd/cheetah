@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<database-config>
+  <use-db>false</use-db>
+  <name>defaultDS</name>
+  <delegator-name>default</delegator-name>
+  <database-type>sqlServer</database-type>
+  <database-name></database-name>
+  <schema-name>sampleschema</schema-name>
+  <url>jdbc:sqlserver://;serverName=my.database.url.net;portNumber=1433;databaseName=testdb</url>
+  <driver-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</driver-class>
+  <username>testuser</username>
+  <password>Nyt5I@s2019</password>
+</database-config>

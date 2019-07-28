@@ -1,0 +1,397 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.gsd.sreenidhi</groupId>
+	<artifactId>Playground</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.name>Playground</project.name>
+		<cheetah.version>1.0.0-SNAPSHOT</cheetah.version>
+		<tag></tag>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>TAG</id>
+			<properties>
+				<tag>,tags=${execution.tag}</tag>
+				<runner>CucumberRunnerTest.java</runner>
+				<args></args>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>JIRA</id>
+			<properties>
+				<tag></tag>
+				<runner>CucumberRunnerTest.java</runner>
+				<args></args>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>RERUN</id>
+			<properties>
+				<tag></tag>
+				<runner>CucumberReRunTest.java</runner>
+				<args>-Dcucumber.options="-p pretty src/test/resources/features"</args>
+			</properties>
+		</profile>
+
+	</profiles>
+
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.sreenidhi-gsd</groupId>
+			<artifactId>cheetah</artifactId>
+			<version>${cheetah.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.db2.jcc</groupId>
+			<artifactId>db2jcc4</artifactId>
+			<version>10.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/db2jcc4-10.1.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2jcc</artifactId>
+			<version>8.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/db2jcc-8.1.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>com.ibm.db2</groupId>
+			<artifactId>db2jcc_license_cu</artifactId>
+			<version>8.1</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/db2jcc_license_cu-8.1.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>oracle</groupId>
+			<artifactId>ojdbc14_g</artifactId>
+			<version>10.2.0.4</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/ojdbc14_g-10.2.0.4.jar</systemPath>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/DB2/db2jcc4 <dependency> <groupId>com.ibm.db2.jcc</groupId> 
+			<artifactId>db2jcc4</artifactId> <version>10.1</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/DB2/db2jcc <dependency> <groupId>com.ibm.db2</groupId> 
+			<artifactId>db2jcc</artifactId> <version>8.1</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/DB2/db2jcc_license_cu <dependency> 
+			<groupId>com.ibm.db2</groupId> <artifactId>db2jcc_license_cu</artifactId> 
+			<version>8.1</version> </dependency> -->
+
+		<!-- <dependency> <groupId>oracle</groupId> <artifactId>ojdbc14_g</artifactId> 
+			<version>10.2.0.4</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+		<dependency>
+			<groupId>com.microsoft.sqlserver</groupId>
+			<artifactId>mssql-jdbc</artifactId>
+			<version>7.2.2.jre8</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.8-dmr</version>
+			<classifier>dmr</classifier>
+		</dependency>
+
+
+		<dependency>
+			<groupId>net.sourceforge.jtds</groupId>
+			<artifactId>jtds</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xerial</groupId>
+			<artifactId>sqlite-jdbc</artifactId>
+			<version>3.21.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mongodb</groupId>
+			<artifactId>mongodb-driver</artifactId>
+			<version>3.5.0</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>properties-maven-plugin</artifactId>
+				<version>1.0.0</version>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>read-project-properties</goal>
+						</goals>
+						<configuration>
+							<files>
+								<file>resources/properties/application.properties</file>
+							</files>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.8</version>
+				<executions>
+					<execution>
+						<phase>initialize</phase>
+						<goals>
+							<goal>run</goal>
+						</goals>
+						<configuration>
+							<target>
+								<delete failonerror="false">
+									<fileset dir="resources"
+										includes="consolidated_batch.json" />
+									<fileset dir="resources" includes="scripts/*.*" />
+									<fileset dir="src" includes="*.properties" />
+									<fileset dir="lib" includes="*.jar" />
+									<fileset dir="src/test/java/connector"
+										includes="*.java" />
+								</delete>
+							</target>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.8</version>
+				<executions>
+					<execution>
+						<id>unpack</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>com.sreenidhi-gsd</groupId>
+									<artifactId>cheetah</artifactId>
+									<version>${cheetah.version}</version>
+									<outputDirectory>src\test\java\connector</outputDirectory>
+									<includes>${runner}</includes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.sreenidhi-gsd</groupId>
+									<artifactId>cheetah</artifactId>
+									<version>${cheetah.version}</version>
+									<outputDirectory>lib</outputDirectory>
+									<includes>*.jar</includes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.sreenidhi-gsd</groupId>
+									<artifactId>cheetah</artifactId>
+									<version>${cheetah.version}</version>
+									<outputDirectory>src</outputDirectory>
+									<includes>*.properties</includes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.sreenidhi-gsd</groupId>
+									<artifactId>cheetah</artifactId>
+									<version>${cheetah.version}</version>
+									<outputDirectory>resources</outputDirectory>
+									<includes>consolidated_batch.json</includes>
+								</artifactItem>
+								<artifactItem>
+									<groupId>com.sreenidhi-gsd</groupId>
+									<artifactId>cheetah</artifactId>
+									<version>${cheetah.version}</version>
+									<outputDirectory>resources/scripts</outputDirectory>
+									<includes>*.js</includes>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.code.maven-replacer-plugin</groupId>
+				<artifactId>replacer</artifactId>
+				<version>1.5.3</version>
+				<executions>
+					<execution>
+						<id>property replacer</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+						<configuration>
+							<basedir>src</basedir>
+							<includes>
+								<include>log4j.properties</include>
+							</includes>
+							<replacements>
+								<replacement>
+									<token>LOG_LOCATION</token>
+									<value>${log.location}</value>
+								</replacement>
+								<replacement>
+									<token>APP_NAME</token>
+									<value>${project.name}</value>
+								</replacement>
+							</replacements>
+						</configuration>
+					</execution>
+					<execution>
+						<id>runner replacer</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>replace</goal>
+						</goals>
+						<configuration>
+							<basedir>src/test/java/connector</basedir>
+							<includes>
+								<include>${runner}</include>
+							</includes>
+							<replacements>
+								<replacement>
+									<token>,tags=""</token>
+									<value>${tag}</value>
+								</replacement>
+								<replacement>
+									<token>glue-link</token>
+									<value>${glue}</value>
+								</replacement>
+							</replacements>
+						</configuration>
+					</execution>
+				</executions>
+
+			</plugin>
+
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
+				<configuration>
+					<phase>compile</phase>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>generate-test-resources</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>target/test-classes</outputDirectory>
+							<resources>
+								<resource>
+									<directory>src</directory>
+									<includes>
+										<include>*.properties</include>
+									</includes>
+									<filtering>true</filtering>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-surefire-plugin</artifactId>
+					<version>2.20</version>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.surefire</groupId>
+							<artifactId>surefire-junit47</artifactId>
+							<version>2.20</version>
+						</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-java</artifactId>
+							<version>1.2.5</version>
+						</dependency>
+						<dependency>
+							<groupId>info.cukes</groupId>
+							<artifactId>cucumber-junit</artifactId>
+							<version>1.2.5</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-api</artifactId>
+				<version>3.9.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-java</artifactId>
+				<version>3.9.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-ie-driver</artifactId>
+				<version>3.9.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-support</artifactId>
+				<version>3.9.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>info.cukes</groupId>
+				<artifactId>cucumber-java</artifactId>
+				<version>1.2.5</version>
+				<scope>provided</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+</project>
