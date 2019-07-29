@@ -12,22 +12,12 @@ Cheetah is a **test automation framework** that has been developed to help autom
    
 ## Motivation
 
-The motivation is to provide a capability for automated testing of softwares and products.  This is one objective to be achieved on the road to producing quality software products in an organization that is embracing the agile methodology.  The road to automation will require skillful navigation, since our route is uncharted. 
-
-
-## API Reference
-
-Please refer Cheetah API JavaDoc reference <a href="http://confluence.sreenidhi-gsd.com/display/Cheetah" target="_blank">here</a>.
+The motivation is to provide a single fraamework that has the capability for performing automated testing of softwares and products.  This is one objective to be achieved on the road to producing quality software products in an organization that is embracing the agile methodology.  The road to automation will require skillful navigation, since our route is uncharted. 
 
 
 ## Getting Started
 
-Please refer the Getting Started Documentation <a href="https://confluence.sreenidhi-gsd.com/display/Cheetah" target="_blank">here</a>.
-
-## Using Cheetah
-
-Please refer to the [USAGE.md](USAGE.md) file for steps on using the Cheetah framework.
-
+Please refer the Getting Started Documentation <a href="https://confluence.sreenidhi-gsd.com/display/CHEETAH/Getting+Started" target="_blank">here</a>.
 
 ## Contribution
 
