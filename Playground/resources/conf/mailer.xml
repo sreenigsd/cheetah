@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mail>
-	<send-mail>true</send-mail>
-	<smtp-host>sreenidhi-gsd.com</smtp-host>
-	<smtp-port>2500</smtp-port>
+	<send-mail>false</send-mail>
+	<smtp-host>your-smtp-host.com</smtp-host>
+	<smtp-port>25</smtp-port>
 	<smtp-username>username</smtp-username>
 	<smtp-password>password</smtp-password>
 	
@@ -10,7 +10,7 @@
 	<smtp-credential-file>resources\\settings\\credential.file</smtp-credential-file>
 	
 	<default-from-email>admin@sreenidhi-gsd.com</default-from-email>
-	<default-to-email>sreenigsd@gmail.com</default-to-email>
+	<default-to-email>you@gmail.com</default-to-email>
 	<default-email-subject>Sample Test Automation Email</default-email-subject>
 	<email-template>resources\\settings\\email.template</email-template>
 	<email-template-message-placeholder>MESSAGE_BODY_SAMPLE</email-template-message-placeholder>

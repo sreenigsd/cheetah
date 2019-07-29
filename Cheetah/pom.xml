@@ -29,6 +29,20 @@
 		<tag>${artifactId}-${version}</tag>
 	</scm>
 
+	<developers>
+		<developer>
+			<id>sreenigsd</id>
+			<name>Gundlupet Sreenidhi</name>
+			<email>sreenidhi.gsd@gmail.com</email>
+			<organization>Sreenidhi</organization>
+			<organizationUrl>http://www.sreenidhi-gsd.com</organizationUrl>
+			<roles>
+				<role>Project-Administrator</role>
+				<role>Architect</role>
+			</roles>
+			<timezone>-5:30</timezone>
+		</developer>
+	</developers>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
