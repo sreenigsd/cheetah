@@ -3,7 +3,7 @@
 <img src="https://sreenidhi-gsd.com/resources/assets/img/cheetah-dark.gif" height="200" width="480" />
 
 Cheetah is a **test automation framework** that has been developed to help automate testing efforts across multiple technologies including Web, Mobile, WebServices, Database, Mainframe, etc..
-<span style="align:center">
+<span style="align:center"><br/>
  <a href="https://bamboo.sreenidhi-gsd.com/browse/CHEETAH-BP0/"><img src="https://bamboo.sreenidhi-gsd.com/plugins/servlet/wittified/build-status/CHEETAH-BP0"></a><space>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<space>
 [![Gitter](https://badges.gitter.im/cheetah-automation/community.svg)](https://gitter.im/cheetah-automation/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
