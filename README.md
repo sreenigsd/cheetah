@@ -7,8 +7,8 @@ Cheetah is a **test automation framework** that has been developed to help autom
 <div align="center">
 <!-- Build Status -->
  <a href="https://bamboo.sreenidhi-gsd.com/browse/CHEETAH-BP0/"><img src="https://bamboo.sreenidhi-gsd.com/plugins/servlet/wittified/build-status/CHEETAH-BP0"></a>
-<space>[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-<space>[![Gitter](https://badges.gitter.im/cheetah-automation/community.svg)](https://gitter.im/cheetah-automation/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+ <space>[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  <space>[![Gitter](https://badges.gitter.im/cheetah-automation/community.svg)](https://gitter.im/cheetah-automation/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 </div> 
    
 ## Motivation
