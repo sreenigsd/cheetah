@@ -2,7 +2,7 @@
 <execution_conf>
 	<!-- 
 		Execution Environment Configurations:
-		Possible values: localhost, genie, saucelabs
+		Possible values: localhost, terrain, saucelabs
 	 -->
 	<execution_env>localhost</execution_env>
 	
@@ -10,9 +10,9 @@
 		GENIE Configurations
 		Required only if execution env = genie 
 	-->
-	<genie-link></genie-link>
-	<genie-port>5555</genie-port>
-	<grid_port>4444</grid_port>
+	<terrain-link></terrain-link>
+	<terrain-port>5555</terrain-port>
+	<hub_port>4444</hub_port>
 	
 	<!-- 
 		Saucelabs Configurations

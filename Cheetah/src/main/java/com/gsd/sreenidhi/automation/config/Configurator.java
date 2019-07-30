@@ -149,9 +149,9 @@ public class Configurator {
 					
 				}else if (configurator.getClass().getTypeName().trim().equalsIgnoreCase("com.gsd.sreenidhi.automation.config.ExecutionConfigurator")) {
 					executionConfigurator.setExecutionEnv(configRead.getString("execution_env")==null?"localhost":configRead.getString("execution_env"));
-					executionConfigurator.setGenieLink(configRead.getString("genie-link"));
-					executionConfigurator.setGeniePort(configRead.getString("genie-port"));
-					executionConfigurator.setHubPort(configRead.getString("grid-port"));
+					executionConfigurator.setTerrainLink(configRead.getString("terrain-link"));
+					executionConfigurator.setTerrainPort(configRead.getString("terrain-port"));
+					executionConfigurator.setHubPort(configRead.getString("hub-port"));
 					executionConfigurator.setSaucelabsUsername(configRead.getString("saucelabs_username"));
 					executionConfigurator.setSaucelabsAccessKey(configRead.getString("saucelabs_access-key"));
 					executionConfigurator.setAppiumHub(configRead.getString("appium-remote-url"));
