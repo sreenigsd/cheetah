@@ -83,7 +83,7 @@ public class Constants {
 	 * Default Execution Constants
 	 */
 	public static final String LOCALHOST = "localhost";
-	public static final String GRID_CONNECTOR = "genie";
+	public static final String GRID_CONNECTOR = "terrain";
 	public static final String SAUCELABS = "saucelabs";
 	public static final String APPIUM_HUB = "0.0.0.0";
 	public static final String APPIUM_PORT = "4723";

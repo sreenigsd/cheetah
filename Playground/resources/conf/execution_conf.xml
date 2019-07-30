@@ -7,8 +7,8 @@
 	<execution_env>localhost</execution_env>
 	
 	<!-- 
-		GENIE Configurations
-		Required only if execution env = genie 
+		Terrain Configurations
+		Required only if execution env = terrain 
 	-->
 	<terrain-link></terrain-link>
 	<terrain-port>5555</terrain-port>

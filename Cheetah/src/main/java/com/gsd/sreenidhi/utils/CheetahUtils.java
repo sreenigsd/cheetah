@@ -121,7 +121,7 @@ public class CheetahUtils extends CheetahEngine {
 					host = CheetahForm.getRemoteServerLink();
 				}
 
-				int port = Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getGeniePort());
+				int port = Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getTerrainPort());
 
 				CheetahEngine.logger.logMessage(null, this.getClass().getName(),
 						"Attempting socket connection for new node", Constants.LOG_INFO, false);
@@ -172,7 +172,7 @@ public class CheetahUtils extends CheetahEngine {
 				} else {
 					host = CheetahForm.getRemoteServerLink();
 				}
-				int port = Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getGeniePort());
+				int port = Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getTerrainPort());
 
 				CheetahEngine.logger.logMessage(null, this.getClass().getName(),
 						"Attempting socket connection for node destruction", Constants.LOG_INFO, false);
@@ -277,13 +277,13 @@ public class CheetahUtils extends CheetahEngine {
 	public String getServerIP() throws CheetahException {
 		String srvIP = null;
 	
-		String requestedExecutionServer = CheetahEngine.configurator.executionConfigurator.getGenieLink();
+		String requestedExecutionServer = CheetahEngine.configurator.executionConfigurator.getTerrainLink();
 
 		if (requestedExecutionServer != null) {
 			boolean hubStatus;
 			boolean listenerStatus;
 				hubStatus = javaPing(requestedExecutionServer, Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getHubPort())); //Test Hub
-				listenerStatus = javaPing(requestedExecutionServer, Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getGeniePort())); // Test Listener
+				listenerStatus = javaPing(requestedExecutionServer, Integer.parseInt(CheetahEngine.configurator.executionConfigurator.getTerrainPort())); // Test Listener
 		
 			if (hubStatus && listenerStatus) {
 				CheetahEngine.logger.logMessage(null, this.getClass().getName(),
