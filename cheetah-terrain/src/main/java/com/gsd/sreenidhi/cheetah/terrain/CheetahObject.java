@@ -1,4 +1,4 @@
-package com.gsd.sreenidhi.cheetah.turf;
+package com.gsd.sreenidhi.cheetah.terrain;
 
 public class CheetahObject {
 

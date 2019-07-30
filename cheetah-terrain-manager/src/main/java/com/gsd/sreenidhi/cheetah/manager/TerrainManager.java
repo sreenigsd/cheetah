@@ -25,7 +25,7 @@ import com.gsd.sreenidhi.utils.FileUtils;
  * @author Gundlupet Sreenidhi
  *
  */
-public class TurfManager {
+public class TerrainManager {
 
 	private static String host;
 	private static String command;
@@ -35,7 +35,7 @@ public class TurfManager {
 	public static void main(String[] args) throws IOException {
 		
 		System.out.println("###########################################################################################");
-		System.out.println("Cheetah Turf Manager");
+		System.out.println("Cheetah Terrain Manager");
 		System.out.println("Handler Version : "+ manager_version);
 		System.out.println("Author: Gundlupet Sreenidhi");
 		System.out.println("###########################################################################################");
@@ -90,7 +90,7 @@ public class TurfManager {
 				}
 			} else {
 				System.out.println("Could not identify required arguements.");
-				System.out.println("USAGE: TurfManager -k -h <HOST_IP> -p <HOST_PORT> -c <COMMAND> -n<NODE_PORT>");
+				System.out.println("USAGE: TerrainManager -k -h <HOST_IP> -p <HOST_PORT> -c <COMMAND> -n<NODE_PORT>");
 				printAppHelp();
 			}
 		} else if (line.hasOption("t")) {
@@ -164,7 +164,7 @@ public class TurfManager {
 				}
 			} else {
 				System.out.println("Could not identify required arguements.");
-				System.out.println("USAGE: TurfManager -c -h <HOST_IP> -p <HOST_PORT> -c <COMMAND>");
+				System.out.println("USAGE: TerrainManager -c -h <HOST_IP> -p <HOST_PORT> -c <COMMAND>");
 				printAppHelp();
 			}
 		} else {
@@ -319,7 +319,7 @@ public class TurfManager {
 	private static void printAppHelp() {
 		Options options = getOptions();
 		HelpFormatter formatter = new HelpFormatter();
-		formatter.printHelp("TurfManager", options, true);
+		formatter.printHelp("TerrainManager", options, true);
 	}
 
 }

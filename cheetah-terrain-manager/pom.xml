@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sreenidhi-gsd</groupId>
-	<artifactId>cheetah-turf-manager</artifactId>
+	<artifactId>cheetah-terrain-manager</artifactId>
 	<version>${projectVersion}</version>
 
-	<name>cheetah-turf-manager</name>
+	<name>cheetah-terrain-manager</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -56,7 +56,7 @@
 						<configuration>
 							<basedir>src/main/java/com/gsd/sreenidhi/cheetah/manager</basedir>
 							<includes>
-								<include>TurfManager.java</include>
+								<include>TerrainManager.java</include>
 							</includes>
 							<replacements>
 								<replacement>
@@ -144,7 +144,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										com.gsd.sreenidhi.cheetah.manager.TurfManager
+										com.gsd.sreenidhi.cheetah.manager.TerrainManager
 									</mainClass>
 								</manifest>
 							</archive>

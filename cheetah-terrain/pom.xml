@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sreenidhi-gsd</groupId>
-	<artifactId>cheetah-turf</artifactId>
+	<artifactId>cheetah-terrain</artifactId>
 	<version>${projectVersion}</version>
 
-	<name>cheetah-turf</name>
+	<name>cheetah-terrain</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -48,9 +48,9 @@
 							<goal>replace</goal>
 						</goals>
 						<configuration>
-							<basedir>src/main/java/com/gsd/sreenidhi/cheetah/turf</basedir>
+							<basedir>src/main/java/com/gsd/sreenidhi/cheetah/terrain</basedir>
 							<includes>
-								<include>TurfListener.java</include>
+								<include>TerrainListener.java</include>
 							</includes>
 							<replacements>
 								<replacement>
@@ -137,7 +137,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										com.gsd.sreenidhi.cheetah.turf.TurfListener
+										com.gsd.sreenidhi.cheetah.terrain.TerrainListener
 									</mainClass>
 								</manifest>
 							</archive>

@@ -1,4 +1,4 @@
-package com.gsd.sreenidhi.cheetah.turf;
+package com.gsd.sreenidhi.cheetah.terrain;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -37,9 +37,9 @@ import java.time.format.DateTimeFormatter; // Import the DateTimeFormatter class
  * @author Sreenidhi, Gundlupet
  *
  */
-public class TurfListener {
+public class TerrainListener {
 	
-	private static String turf_version = "VERSION"; //DO NOT MODIFY. CHECK-IN with value "VERSION"
+	private static String terrain_version = "VERSION"; //DO NOT MODIFY. CHECK-IN with value "VERSION"
 
 	public static void main(String[] args) {
 		
@@ -58,8 +58,8 @@ public class TurfListener {
 		String fD = mDO.format(mFO);
 		
 		System.out.println("###########################################################################################");
-		System.out.println("Cheetah Turf Program");
-		System.out.println("Turf Version : "+ turf_version);
+		System.out.println("Cheetah Terrain Program");
+		System.out.println("Terrain Version : "+ terrain_version);
 		System.out.println("Author: Gundlupet Sreenidhi");
 		System.out.println("Listener Start Timestamp: " + fD);
 		System.out.println("###########################################################################################");
