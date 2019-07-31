@@ -123,7 +123,8 @@ public class FileUtils extends CheetahEngine {
 		return f;
 
 	}
-
+	
+	
 	/**
 	 * @param filetype
 	 *            Type of File for processing. This parameter accepts only following
@@ -138,7 +139,9 @@ public class FileUtils extends CheetahEngine {
 		File file = null;
 		boolean fileExists = false;
 		String subFiletype = null;
-		if ("INPUT".equalsIgnoreCase(filetype)) {
+		if(filetype==null) {
+			subFiletype = null;
+		}else if ("INPUT".equalsIgnoreCase(filetype)) {
 			subFiletype = "input";
 			fileExists = true;
 		} else if ("UPLOAD".equalsIgnoreCase(filetype)) {
@@ -148,9 +151,17 @@ public class FileUtils extends CheetahEngine {
 			subFiletype = "email";
 			fileExists = true;
 		} else {
+			File f  = null;
+			if(subFiletype==null) {
+				f= new File(Paths.get(".").toAbsolutePath().normalize().toString() + File.separator + "src"
+						+ File.separator + "test" + File.separator + "data" + File.separator + inputFile);
+				
+			}else {
+				f= new File(Paths.get(".").toAbsolutePath().normalize().toString() + File.separator + "src"
+						+ File.separator + "test" + File.separator + "data" + File.separator + subFiletype + File.separator + inputFile);
+					
+			}
 			subFiletype = filetype;
-			File f = new File(Paths.get(".").toAbsolutePath().normalize().toString() + File.separator + "src"
-					+ File.separator + "test" + File.separator + "data" + File.separator + subFiletype + File.separator + inputFile);
 			if (f.exists()) {
 				fileExists = true;
 			} else {
