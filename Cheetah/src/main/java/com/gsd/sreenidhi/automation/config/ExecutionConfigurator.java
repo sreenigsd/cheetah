@@ -4,8 +4,8 @@ public class ExecutionConfigurator {
 
 	public String executionEnv;
 	public String hubPort;
-	public String genieLink;
-	public String geniePort;
+	public String terrainLink;
+	public String terrainPort;
 	public String saucelabsUsername;
 	public String saucelabsAccessKey;
 	public String appiumHub;
@@ -35,38 +35,26 @@ public class ExecutionConfigurator {
 	}
 
 	/**
-	 * @return the genieLink
-	 */
-	public String getGenieLink() {
-		return genieLink;
-	}
-
-	/**
-	 * @param genieLink the genieLink to set
-	 */
-	public void setGenieLink(String genieLink) {
-		this.genieLink = genieLink;
-	}
-
-	/**
-	 * @return the geniePort
-	 */
-	public String getGeniePort() {
-		return geniePort;
-	}
-
-	/**
-	 * @param geniePort the geniePort to set
-	 */
-	public void setGeniePort(String geniePort) {
-		this.geniePort = geniePort;
-	}
-
-	/**
 	 * @return the saucelabsUsername
 	 */
 	public String getSaucelabsUsername() {
 		return saucelabsUsername;
+	}
+
+	public String getTerrainLink() {
+		return terrainLink;
+	}
+
+	public void setTerrainLink(String terrainLink) {
+		this.terrainLink = terrainLink;
+	}
+
+	public String getTerrainPort() {
+		return terrainPort;
+	}
+
+	public void setTerrainPort(String terrainPort) {
+		this.terrainPort = terrainPort;
 	}
 
 	/**

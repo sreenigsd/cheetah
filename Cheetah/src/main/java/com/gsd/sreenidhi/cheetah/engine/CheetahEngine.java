@@ -497,11 +497,11 @@ public class CheetahEngine {
 	 *             Generic Exception Object that handles all exceptions
 	 */
 	public static File getDataFile(String fileType, String inputFileName) throws CheetahException {
-		logger.logMessage(null, "CheetahEngine", "Loading Properties file..", Constants.LOG_INFO, false);
+		logger.logMessage(null, "CheetahEngine", "Loading Data file..", Constants.LOG_INFO, false);
 		File file = null;
 		FileUtils fileUtils = new FileUtils();
 		file = fileUtils.getFile(fileType, inputFileName);
-		logger.logMessage(null, "CheetahEngine", "Properties file loaded successfully.", Constants.LOG_INFO,
+		logger.logMessage(null, "CheetahEngine", "Data file loaded successfully.", Constants.LOG_INFO,
 				false);
 		return file;
 	}
