@@ -62,5 +62,5 @@ We follow the [Semantic Versioning](https://semver.org/) format: {MAJOR}.{MINOR}
 
 
 ## Authors and Team
-* @Gundlupet Sreenidhi - sreenidhi.gsd@gmail.com **Gundlupet Sreenidhi**  
+* @sreenigsd - sreenidhi.gsd@gmail.com **Gundlupet Sreenidhi**  
 
