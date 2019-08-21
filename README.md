@@ -48,13 +48,13 @@ Please refer Cheetah API JavaDoc reference <a href="https://cheetah-doc.sreenidh
 If you would like to be involved in enhancing the capabilities of this framework, please contact the administrator at sreenidhi.gsd@gmail.com 
 You can also submit your feature requests on the Cheetah JIRA Project <a href="https://jira.sreenidhi-gsd.com/secure/RapidBoard.jspa?rapidView=142&projectKey=Cheetah" target="_blank">here</a> or fork a copy of the project on GitHub and submit a pull request for your changes.
 
-Talk to other contributors [in our Gitter room](https://gitter.im/cheetah-automation).
+:loudspeaker: Talk to other contributors [in our Gitter room](https://gitter.im/cheetah-automation).
 
 * Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) file.
 
 
 ## Versioning
-We follow the [Semantic Versioning](https://semver.org/) format: {MAJOR}.{MINOR}.{BUILD} for versioning *Cheetah*
+:1234: We follow the [Semantic Versioning](https://semver.org/) format: {MAJOR}.{MINOR}.{BUILD} for versioning *Cheetah*
 
 * **MAJOR**: Major version changes are changes to the *Cheetah* framework to keep in par with updates to Core *Java*, *Selenium* and *Appium* technologies and versions. Changes to Java, Selenium and Appium are extenal to the framework. A change in these technologies does not warrant a change to the Cheetah Framework.
 * **MINOR**: Minor changes are changes to the  *Cheetah* framework to include feature requests, enhancements and bug fixes.
