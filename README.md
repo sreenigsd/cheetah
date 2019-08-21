@@ -35,7 +35,7 @@ To get started, you can download the playground project and run the maven projec
 mvn clean initialize test -P TAG
 ```
 
-Please refer the Getting Started Documentation <a href="https://confluence.sreenidhi-gsd.com/display/CHEETAH/Getting+Started" target="_blank">here</a> for detailed instructions to create your own automation project or to modify the playground project.
+Please refer the Getting Started Documentation <a href="https://confluence.sreenidhi-gsd.com/display/CHEETAH/Getting+Started" target="_blank">**here**</a> for detailed instructions to create your own automation project or to modify the playground project.
 
 
 ## API Reference
