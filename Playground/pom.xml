@@ -9,7 +9,7 @@
 
 	<properties>
 		<project.name>Playground</project.name>
-		<cheetah.version>1.0.27</cheetah.version>
+		<cheetah.version>1.1.25-SNAPSHOT</cheetah.version>
 		<tag></tag>
 	</properties>
 
