@@ -325,7 +325,7 @@ public class ServiceConnect {
 		chromeOptions.addArguments("--no-sandbox");
 		chromeOptions.merge(capabilities);
 		chromeOptions.setExperimentalOption("prefs", chromePrefs);
-		chromeOptions.setCapability("useAutomationExtension", false);
+
 		return chromeOptions;
 	}
 
