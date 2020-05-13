@@ -14,7 +14,6 @@ import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.forms.Constants;
 
-
 /**
  * @author Sreenidhi, Gundlupet
  *
@@ -22,19 +21,17 @@ import com.gsd.sreenidhi.forms.Constants;
 public class ZipUtils {
 
 	/**
-	 * @param filePath
-	 *            Path of File
-	 * @throws CheetahException
-	 *             Generic Exception Object that handles all exceptions
+	 * @param filePath Path of File
+	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 */
 	public static void archiveFile(String filePath) throws CheetahException {
 		String sourceFile = filePath;
 		File f = new File(filePath);
 		FileOutputStream fos;
-		
-		String fileLocation = com.gsd.sreenidhi.utils.FileUtils.getReportsPath() + File.separator + "VIDEO" + File.separator
-				+ CheetahEngine.app_name ;
-		
+
+		String fileLocation = com.gsd.sreenidhi.utils.FileUtils.getReportsPath() + File.separator + "VIDEO"
+				+ File.separator + CheetahEngine.app_name;
+
 		try {
 			fos = new FileOutputStream(fileLocation + File.separator + f.getName() + ".zip");
 
@@ -58,16 +55,14 @@ public class ZipUtils {
 	}
 
 	/**
-	 * @param dirPath
-	 *            Path of Directory
-	 * @throws CheetahException
-	 *             Generic Exception Object that handles all exceptions
+	 * @param dirPath Path of Directory
+	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 */
 	public static void archiveDirectory(String dirPath) throws CheetahException {
 		File directoryToZip = new File(dirPath);
-		String fileLocation = com.gsd.sreenidhi.utils.FileUtils.getReportsPath() + File.separator + "VIDEO" + File.separator
-				+ CheetahEngine.app_name ;
-		
+		String fileLocation = com.gsd.sreenidhi.utils.FileUtils.getReportsPath() + File.separator + "VIDEO"
+				+ File.separator + CheetahEngine.app_name;
+
 		List<File> fileList = new ArrayList<File>();
 		try {
 			CheetahEngine.logger.logMessage(null, "ZipUtils",
@@ -86,22 +81,26 @@ public class ZipUtils {
 	}
 
 	/**
-	 * @param dir
-	 *            Directory
-	 * @param fileList
-	 *            fileList
+	 * @param dir      Directory
+	 * @param fileList fileList
+	 * @throws CheetahException
 	 */
-	public static void getAllFiles(File dir, List<File> fileList) {
+	public static void getAllFiles(File dir, List<File> fileList) throws CheetahException {
 		try {
 			File[] files = dir.listFiles();
-			for (File file : files) {
-				fileList.add(file);
-				if (file.isDirectory()) {
-					System.out.println("directory:" + file.getCanonicalPath());
-					getAllFiles(file, fileList);
-				} else {
-					System.out.println("     file:" + file.getCanonicalPath());
+			if (files != null) {
+				for (File file : files) {
+					fileList.add(file);
+					if (file.isDirectory()) {
+						System.out.println("directory:" + file.getCanonicalPath());
+						getAllFiles(file, fileList);
+					} else {
+						System.out.println("     file:" + file.getCanonicalPath());
+					}
 				}
+			} else {
+				CheetahEngine.logger.logMessage(null, "ZipUtils", "There are no files to archive.", Constants.LOG_INFO,
+						false);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -109,32 +108,31 @@ public class ZipUtils {
 	}
 
 	/**
-	 * @param directoryToZip
-	 *            directoryToZip
-	 * @param fileList
-	 *            List of Files
-	 * @throws CheetahException
-	 *             Generic Exception Object that handles all exceptions
+	 * @param directoryToZip directoryToZip
+	 * @param fileList       List of Files
+	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 */
 	public static void writeZipFile(File directoryToZip, List<File> fileList) throws CheetahException {
 
 		try {
-			String filePath = com.gsd.sreenidhi.utils.FileUtils.getReportsPath() + File.separator + "VIDEO" + File.separator
-					+ CheetahEngine.app_name ;
-			
-			FileOutputStream fos = new FileOutputStream(filePath + File.separator + directoryToZip.getName() + ".zip");
-			ZipOutputStream zos = new ZipOutputStream(fos);
+			String filePath = com.gsd.sreenidhi.utils.FileUtils.getReportsPath() + File.separator + "VIDEO"
+					+ File.separator + CheetahEngine.app_name;
 
-			for (File file : fileList) {
-				if (!file.isDirectory()) { // we only zip files, not directories
-					addToZip(directoryToZip, file, zos);
+			if (fileList != null) {
+				FileOutputStream fos = new FileOutputStream(
+						filePath + File.separator + directoryToZip.getName() + ".zip");
+				ZipOutputStream zos = new ZipOutputStream(fos);
+
+				for (File file : fileList) {
+					if (!file.isDirectory()) { // we only zip files, not directories
+						addToZip(directoryToZip, file, zos);
+					}
 				}
+
+				zos.close();
+				fos.close();
 			}
-
-			zos.close();
-			fos.close();
-
-			} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException e) {
 			throw new CheetahException(e);
 		} catch (IOException e) {
 			throw new CheetahException(e);
@@ -142,10 +140,8 @@ public class ZipUtils {
 	}
 
 	/**
-	 * @param zipFile
-	 *            String path of zip file
-	 * @throws CheetahException
-	 *             Generic Exception Object that handles all exceptions
+	 * @param zipFile String path of zip file
+	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 */
 	private static void copy_to_target(String zipFile) throws CheetahException {
 		File sourceFile = new File(zipFile);
@@ -154,20 +150,16 @@ public class ZipUtils {
 			destFile.mkdirs();
 		}
 
-		sourceFile.renameTo(new File("." + File.separator + "target" + File.separator + "VIDEO" + File.separator + sourceFile.getName()));
-		
-		
+		sourceFile.renameTo(new File(
+				"." + File.separator + "target" + File.separator + "VIDEO" + File.separator + sourceFile.getName()));
+
 	}
 
 	/**
-	 * @param directoryToZip
-	 *            directoryToZip
-	 * @param file
-	 *            File
-	 * @param zos
-	 *            ZipOutputStream
-	 * @throws CheetahException
-	 *             Generic Exception Object that handles all exceptions
+	 * @param directoryToZip directoryToZip
+	 * @param file           File
+	 * @param zos            ZipOutputStream
+	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 * 
 	 */
 	public static void addToZip(File directoryToZip, File file, ZipOutputStream zos) throws CheetahException {
