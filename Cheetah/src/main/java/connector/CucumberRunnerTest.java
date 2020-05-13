@@ -40,7 +40,7 @@ import cucumber.api.CucumberOptions;
  * @author Sreenidhi, Gundlupet
  *
  */
-@CucumberOptions(features = { "." }, 
+@CucumberOptions(features = { "features" }, 
 					glue = { "glue-link" }, 
 					plugin = { "json:target/cucumber.json",
 								"html:target/cucumber-html-report", 

@@ -269,6 +269,10 @@
 									<token>glue-link</token>
 									<value>${glue}</value>
 								</replacement>
+								<replacement>
+									<token>feature-link</token>
+									<value>${features}</value>
+								</replacement>
 							</replacements>
 						</configuration>
 					</execution>
