@@ -24,6 +24,18 @@ public class CalendarUtils {
 	}
 	
 	/**
+	 * Convert Java Date to String
+	 * @param date Date
+	 * @return string format of Date
+	 */
+	public static String dateToString(Date date, String format) {
+		String dt;
+		DateFormat df = new SimpleDateFormat(format);
+		dt = df.format(date);
+		return dt;
+	}
+	
+	/**
 	 * Returns the current time stamp.
 	 * @return Current Timestamp
 	 */
