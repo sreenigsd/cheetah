@@ -16,7 +16,7 @@ import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.cheetah.reporting.ReportingBean;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 
 /**
  * @author Sreenidhi, Gundlupet
@@ -185,7 +185,7 @@ public class DBExecutor {
 				connection = getConnection();
 				pstmt = connection.prepareStatement(transaction_SQL);
 				pstmt.setString(1, scenario.getName());
-				pstmt.setString(2, scenario.getStatus());
+				pstmt.setString(2, scenario.getStatus().toString());
 				pstmt.setString(3, bean.getTest_Page_URL());
 				pstmt.setString(4, bean.getTestStartTime().toString());
 				pstmt.setString(5, bean.getTestEndTime().toString());

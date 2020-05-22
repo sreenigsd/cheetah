@@ -33,25 +33,27 @@ import com.gsd.sreenidhi.utils.FileUtils;
 import com.gsd.sreenidhi.utils.SystemEnvironment;
 import com.gsd.sreenidhi.utils.ZipUtils;
 
-import cucumber.api.CucumberOptions;
+import io.cucumber.junit.CucumberOptions;
 
 //@RunWith(Cucumber.class)
 /**
  * @author Sreenidhi, Gundlupet
  *
  */
-@CucumberOptions(features = { "features" }, 
-					glue = { "glue-link" }, 
-					plugin = { "json:target/cucumber.json",
-								"html:target/cucumber-html-report", 
-								"pretty:target/cucumber-pretty.txt", 
-								"usage:target/cucumber-usage.json",
-								"junit:target/cucumber-junit-results.xml", 
-								"rerun:src/test/resources/rerun.txt" }
-					,tags=""
-						)
+
 
 @RunWith(ExtendedCucumberRunner.class)
+@CucumberOptions(strict = true,
+features =  {"feature-link"} , 
+	glue =  {"glue-link"} , 
+	plugin = { "json:target/cucumber.json",
+				"html:target/cucumber-html-report", 
+				"pretty:target/cucumber-pretty.txt", 
+				"usage:target/cucumber-usage.json",
+				"junit:target/cucumber-junit-results.xml", 
+				"rerun:src/test/resources/rerun.txt" }
+	,tags=""
+		)
 //public class CucumberRunnerTest  extends AbstractTestNGCucumberTests{
 public class CucumberRunnerTest {
 

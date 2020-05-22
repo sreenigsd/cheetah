@@ -83,7 +83,7 @@ public class ZipUtils {
 	/**
 	 * @param dir      Directory
 	 * @param fileList fileList
-	 * @throws CheetahException
+	 * @throws CheetahException  Generic Exception Object that handles all exceptions
 	 */
 	public static void getAllFiles(File dir, List<File> fileList) throws CheetahException {
 		try {

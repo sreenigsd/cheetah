@@ -32,7 +32,7 @@ import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.infra.ServiceProvider;
 import com.gsd.sreenidhi.utils.FileUtils;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 
 /**
  * This is the base class that can be extended to all applications
@@ -374,22 +374,22 @@ public class CheetahEngine {
 	}
 
 	/**
-	 * @param scenario
+	 * @param scenarioImpl
 	 *            Scenario that was just executed.
 	 * @param appName
 	 *            Name of the application for which the test is being executed.
 	 * @throws CheetahException
 	 *             Generic Exception Object that handles all exceptions
 	 */
-	public static void processPostAction(Scenario scenario, String appName) throws CheetahException {
+	public static void processPostAction(io.cucumber.java.Scenario scenarioImpl, String appName) throws CheetahException {
 		testEndTime = Calendar.getInstance().getTime();
 		ReportingBean bean = new ReportingBean();
-		bean.setTest_Status(scenario.getStatus());
+		bean.setTest_Status(scenarioImpl.getStatus().toString());
 		if ("web".equalsIgnoreCase(props.getProperty("test.type"))) {
 			bean.setTest_Page_URL((driver.getCurrentUrl() != null) ? driver.getCurrentUrl() : "");
 		}
-		bean.setScenario(scenario.getName());
-		bean.setScenarioImpl(scenario);
+		bean.setScenario(scenarioImpl.getName());
+		bean.setScenarioImpl(scenarioImpl);
 		bean.setScenarioExecutionId(retrieveScenarioExecutionId());
 		bean.setTestStartTime(testStartTime);
 		bean.setTestEndTime(testEndTime);
@@ -400,21 +400,21 @@ public class CheetahEngine {
 
 		bean.setExecutionTime(executionTime);
 
-		logger.logMessage(null, CheetahEngine.class.getName(), "Scenario complete:\n" + scenario.toString(),
+		logger.logMessage(null, CheetahEngine.class.getName(), "Scenario complete:\n" + scenarioImpl.toString(),
 				Constants.LOG_INFO, false);
 
-		if (scenario.isFailed()) {
+		if (scenarioImpl.isFailed()) {
 
 			reportingForm.setStatusFail(reportingForm.getStatusFail() + 1);
 			try {
-				scenario.write("Current Page URL is " + driver.getCurrentUrl());
+				scenarioImpl.write("Current Page URL is " + driver.getCurrentUrl());
 
 				if (screenShotForTestType()) {
 					if (Constants.screenShotCapture && Constants.screenShotOnFail) {
 						// Take Screenshot on Failure
 						WebDriver augmentedDriver = new Augmenter().augment(driver);
 						byte[] screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BYTES);
-						scenario.embed(screenshot, "image/png");
+						scenarioImpl.embed(screenshot, "image/png");
 						bean.setScreenshot(screenshot);
 						DBExecutor.recordScreenshot(screenshot, Calendar.getInstance().getTime().toString(), "FAILURE",
 								retrieveScenarioExecutionId() + "_TestFail");
@@ -437,7 +437,7 @@ public class CheetahEngine {
 							// Take Screenshot on Success
 							WebDriver augmentedDriver = new Augmenter().augment(driver);
 							byte[] screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BYTES);
-							scenario.embed(screenshot, "image/png");
+							scenarioImpl.embed(screenshot, "image/png");
 							bean.setScreenshot(screenshot);
 							DBExecutor.recordScreenshot(screenshot, Calendar.getInstance().getTime().toString(),
 									"FAILURE", retrieveScenarioExecutionId() + "_TestPass");
@@ -473,8 +473,8 @@ public class CheetahEngine {
 
 		processProperty(appName);
 		logger.breakLine();
-		DBExecutor.updateScenario(scenario, bean);
-		processVideoCompletion(scenario);
+		DBExecutor.updateScenario(scenarioImpl, bean);
+		processVideoCompletion(scenarioImpl);
 
 	}
 

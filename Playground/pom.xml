@@ -9,7 +9,7 @@
 
 	<properties>
 		<project.name>Playground</project.name>
-		<cheetah.version>1.1.14</cheetah.version>
+		<cheetah.version>1.1.26-SNAPSHOT</cheetah.version>
 		<tag></tag>
 	</properties>
 
@@ -81,7 +81,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -116,6 +116,7 @@
 			<artifactId>mongodb-driver</artifactId>
 			<version>3.5.0</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>

@@ -14,7 +14,8 @@ import com.gsd.sreenidhi.cheetah.runner.AfterSuite;
 import com.gsd.sreenidhi.cheetah.runner.BeforeSuite;
 import com.gsd.sreenidhi.forms.Constants;
 
-import cucumber.api.junit.Cucumber;
+//import cucumber.api.junit.Cucumber;
+import io.cucumber.junit.Cucumber;
 
 /**
  * @author Sreenidhi, Gundlupet

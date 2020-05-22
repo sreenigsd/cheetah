@@ -32,16 +32,20 @@ import com.gsd.sreenidhi.utils.FileUtils;
 import com.gsd.sreenidhi.utils.SystemEnvironment;
 import com.gsd.sreenidhi.utils.ZipUtils;
 
-import cucumber.api.CucumberOptions;
+//import cucumber.api.CucumberOptions;
 //import org.junit.BeforeClass;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
+//import cucumber.api.testng.AbstractTestNGCucumberTests;
+
+import io.cucumber.junit.CucumberOptions;
 
 //@RunWith(Cucumber.class)
 /**
  * @author Sreenidhi, Gundlupet
  *
  */
-@CucumberOptions(features = "@src/test/resources/rerun.txt", 
+@RunWith(ExtendedCucumberRunner.class)
+@CucumberOptions(strict = true,
+				features = "@src/test/resources/rerun.txt", 
 				glue = { "glue-link" }, 
 				plugin = {"json:target/cucumber.json", 
 						"html:target/cucumber-html-report", 
@@ -49,11 +53,9 @@ import cucumber.api.testng.AbstractTestNGCucumberTests;
 						"usage:target/cucumber-usage.json", 
 						"junit:target/cucumber-junit-results.xml",
 						"rerun:src/test/resources/rerun.txt" }
-				)
-
-@RunWith(ExtendedCucumberRunner.class)
+			)
 //public class CucumberReRunTest  extends AbstractTestNGCucumberTests{
-public class CucumberReRunTest extends AbstractTestNGCucumberTests {
+public class CucumberReRunTest {
 
 	/**
 	 * This is the Test binding object. All tests are initiated and completed within

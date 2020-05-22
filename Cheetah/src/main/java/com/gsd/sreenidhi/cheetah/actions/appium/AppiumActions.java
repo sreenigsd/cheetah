@@ -14,6 +14,8 @@ import com.gsd.sreenidhi.forms.Constants;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.touch.LongPressOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 /**
  * @author Sreenidhi, Gundlupet
@@ -103,16 +105,27 @@ public class AppiumActions extends SeleniumActions {
 
 		// To swipe from bottom to top
 		for (int x = 0; x < swipes; x = x + 1) {
+			PointOption startpo = new PointOption();
+			startpo.withCoordinates(startx, starty);
+			
+			LongPressOptions startlpo = new LongPressOptions();
+			startlpo.withPosition(startpo);
+			
+			PointOption endpo = new PointOption();
+			endpo.withCoordinates(endx, endy);
+			
+			
 			if ("ANDROID".equalsIgnoreCase(properties.getProperty("os.platform"))) {
 				// ((AndroidDriver)CheetahEngine.getDriverInstance()).swipe(startx,
 				// starty, endx, endy, power);
-				new TouchAction((AndroidDriver) CheetahEngine.getDriverInstance()).longPress(startx, starty)
-						.moveTo(endx, endy).release().perform();
+				
+				new TouchAction((AndroidDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
+						.moveTo(endpo).release().perform();
 			} else {
 				// ((IOSDriver)CheetahEngine.getDriverInstance()).swipe(startx,
 				// starty, endx, endy, power);
-				new TouchAction((IOSDriver) CheetahEngine.getDriverInstance()).longPress(startx, starty)
-						.moveTo(endx, endy).release().perform();
+				new TouchAction((IOSDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
+						.moveTo(endpo).release().perform();
 			}
 		}
 
@@ -146,17 +159,27 @@ public class AppiumActions extends SeleniumActions {
 
 		// To swipe from top to bottom
 		for (int x = 0; x < swipes; x = x + 1) {
+			
+			PointOption startpo = new PointOption();
+			startpo.withCoordinates(startx, starty);
+			
+			LongPressOptions startlpo = new LongPressOptions();
+			startlpo.withPosition(startpo);
+			
+			PointOption endpo = new PointOption();
+			endpo.withCoordinates(endx, endy);
+			
 			if ("ANDROID".equalsIgnoreCase(properties.getProperty("os.platform"))) {
 				// ((AndroidDriver)
 				// CheetahEngine.getDriverInstance()).swipe(startx, starty, endx,
 				// endy, power);
-				new TouchAction((AndroidDriver) CheetahEngine.getDriverInstance()).longPress(startx, starty)
-						.moveTo(endx, endy).release().perform();
+				new TouchAction((AndroidDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
+						.moveTo(endpo).release().perform();
 			} else {
 				// ((IOSDriver) CheetahEngine.getDriverInstance()).swipe(startx,
 				// starty, endx, endy, power);
-				new TouchAction((IOSDriver) CheetahEngine.getDriverInstance()).longPress(startx, starty)
-						.moveTo(endx, endy).release().perform();
+				new TouchAction((IOSDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
+						.moveTo(endpo).release().perform();
 			}
 		}
 	}

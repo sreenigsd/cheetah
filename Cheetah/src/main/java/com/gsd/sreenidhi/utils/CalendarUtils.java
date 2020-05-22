@@ -26,6 +26,7 @@ public class CalendarUtils {
 	/**
 	 * Convert Java Date to String
 	 * @param date Date
+	 * @param format Format of the conversion. Example: dd/MM/yyyy
 	 * @return string format of Date
 	 */
 	public static String dateToString(Date date, String format) {
