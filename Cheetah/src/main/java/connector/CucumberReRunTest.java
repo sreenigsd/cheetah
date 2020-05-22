@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.runner.RunWith;
-
 import com.gsd.sreenidhi.automation.config.Configurator;
 import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
@@ -23,8 +21,6 @@ import com.gsd.sreenidhi.cheetah.reporting.ReportingForm;
 import com.gsd.sreenidhi.cheetah.reporting.csv.CSVReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.html.HTMLReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.pdf.PDFReportingEngine;
-import com.gsd.sreenidhi.cheetah.runner.AfterSuite;
-import com.gsd.sreenidhi.cheetah.runner.BeforeSuite;
 import com.gsd.sreenidhi.cheetah.runner.ExtendedCucumberRunner;
 import com.gsd.sreenidhi.utils.CalendarUtils;
 import com.gsd.sreenidhi.utils.CheetahUtils;
@@ -32,18 +28,23 @@ import com.gsd.sreenidhi.utils.FileUtils;
 import com.gsd.sreenidhi.utils.SystemEnvironment;
 import com.gsd.sreenidhi.utils.ZipUtils;
 
-//import cucumber.api.CucumberOptions;
-//import org.junit.BeforeClass;
-//import cucumber.api.testng.AbstractTestNGCucumberTests;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
-import io.cucumber.junit.CucumberOptions;
+//import cucumber.api.CucumberOptions;
+//import org.junit.runner.RunWith;
+//import io.cucumber.junit.CucumberOptions;
+
+import io.cucumber.testng.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+
 
 //@RunWith(Cucumber.class)
 /**
  * @author Sreenidhi, Gundlupet
  *
  */
-@RunWith(ExtendedCucumberRunner.class)
+//@RunWith(ExtendedCucumberRunner.class)
 @CucumberOptions(strict = true,
 				features = "@src/test/resources/rerun.txt", 
 				glue = { "glue-link" }, 
@@ -52,10 +53,11 @@ import io.cucumber.junit.CucumberOptions;
 						"pretty:target/cucumber-pretty.txt",
 						"usage:target/cucumber-usage.json", 
 						"junit:target/cucumber-junit-results.xml",
+						"testng:target/cucumber-testng-tesults.xml",
 						"rerun:src/test/resources/rerun.txt" }
 			)
-//public class CucumberReRunTest  extends AbstractTestNGCucumberTests{
-public class CucumberReRunTest {
+public class CucumberReRunTest  extends AbstractTestNGCucumberTests{
+//public class CucumberReRunTest {
 
 	/**
 	 * This is the Test binding object. All tests are initiated and completed within

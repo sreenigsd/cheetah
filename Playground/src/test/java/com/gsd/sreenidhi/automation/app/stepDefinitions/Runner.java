@@ -10,7 +10,7 @@ public class Runner extends CheetahEngine{
 	
 	@Before
     public void prepareScenario() throws Exception{
-		CheetahEngine.generateBase(CheetahEngine.props.getProperty("app.name"));
+		CheetahEngine.generateBase("ABC");
     }
     
     @After
@@ -18,6 +18,6 @@ public class Runner extends CheetahEngine{
      * Embed a screenshot in test report if test is marked as failed
      */
     public void processExecution(io.cucumber.java.Scenario scenarioImpl) throws Exception {
-    	CheetahEngine.processPostAction(scenarioImpl, CheetahEngine.props.getProperty("app.name"));
+    	CheetahEngine.processPostAction(scenarioImpl, "ABC");
     }
 }

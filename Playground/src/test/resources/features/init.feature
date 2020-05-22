@@ -3,7 +3,7 @@ Feature: Title of your feature
   I want to use this template for my feature file
 
   @login @regression @smoke @sree
-  Scenario: Title of your scenario
+  Scenario: Scenario One
     Given I launch the url
     When I choose Selenium Dropdown
     And I navigate to the Complex Page
@@ -25,7 +25,7 @@ Feature: Title of your feature
     But I click on toggle2
     
     @login @regression @smoke @sree @something
-  Scenario: Title of your scenario
+  Scenario: Scenario Two
     Given I launch the url
     When I choose Selenium Dropdown
     And I navigate to the Complex Page
