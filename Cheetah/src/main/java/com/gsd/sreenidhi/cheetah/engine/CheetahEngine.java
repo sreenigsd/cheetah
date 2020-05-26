@@ -1,13 +1,17 @@
 package com.gsd.sreenidhi.cheetah.engine;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.monte.screenrecorder.ScreenRecorder;
 import org.openqa.selenium.OutputType;
@@ -17,6 +21,13 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.gsd.sreenidhi.automation.config.Configurator;
+import com.gsd.sreenidhi.cheetah.actions.Cognator;
 import com.gsd.sreenidhi.cheetah.actions.appium.AppiumActions;
 import com.gsd.sreenidhi.cheetah.actions.selenium.SeleniumActions;
 import com.gsd.sreenidhi.cheetah.actions.webService.WebServiceActions;
@@ -27,12 +38,15 @@ import com.gsd.sreenidhi.cheetah.reporting.Log;
 import com.gsd.sreenidhi.cheetah.reporting.Media;
 import com.gsd.sreenidhi.cheetah.reporting.ReportingBean;
 import com.gsd.sreenidhi.cheetah.reporting.ReportingForm;
-import com.gsd.sreenidhi.automation.config.Configurator;
 import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.infra.ServiceProvider;
 import com.gsd.sreenidhi.utils.FileUtils;
 
+import io.cucumber.core.backend.TestCaseState;
 import io.cucumber.java.Scenario;
+import io.cucumber.plugin.event.PickleStepTestStep;
+import io.cucumber.plugin.event.TestCase;
+import io.cucumber.plugin.event.TestStep;
 
 /**
  * This is the base class that can be extended to all applications
@@ -78,6 +92,13 @@ public class CheetahEngine {
 	public static WindowHandleStack handleStack;
 	
 	public static Configurator configurator;
+	
+	public static ExtentSparkReporter htmlSparkReporter;
+	public static ExtentHtmlReporter htmlReporter; 
+	public static ExtentReports report; 
+	public static ExtentTest reportLogger;
+	
+	public static int currentStepDefIndex = 0;
 
 	/**
 	 * @return ScenarioExecutionId
@@ -343,14 +364,17 @@ public class CheetahEngine {
 
 	/**
 	 * Initialize the Cheetah Base
-	 * 
+	 * @param scenarioImpl 
+	 * 				Scenario
 	 * @param appName
 	 *            Name of the application for which the test is being executed.
 	 * @throws CheetahException
 	 *             Generic Exception Object that handles all exceptions
 	 */
-	public static void generateBase(String appName) throws CheetahException {
+	public static void generateBase(Scenario scenarioImpl, String appName) throws CheetahException {
+		CheetahEngine.reportLogger = CheetahEngine.report.createTest(scenarioImpl.getName().toString(), scenarioImpl.getSourceTagNames().toString());
 		
+		CheetahEngine.currentStepDefIndex = 0;
 		processVideoRecording();
 		logger.logMessage(null, "CheetahEngine", "Generating Base", Constants.LOG_INFO, false);
 		testStartTime = Calendar.getInstance().getTime();
@@ -383,6 +407,9 @@ public class CheetahEngine {
 	 */
 	public static void processPostAction(io.cucumber.java.Scenario scenarioImpl, String appName) throws CheetahException {
 		testEndTime = Calendar.getInstance().getTime();
+		
+		//CheetahEngine.reportLogger.log(Status.PASS, scenarioImpl.getName().toString());
+		
 		ReportingBean bean = new ReportingBean();
 		bean.setTest_Status(scenarioImpl.getStatus().toString());
 		if ("web".equalsIgnoreCase(props.getProperty("test.type"))) {
@@ -646,4 +673,66 @@ public class CheetahEngine {
 		return handleStack.pop();
 	}
 
+	
+	public static void afterStep(io.cucumber.java.Scenario scenario) 
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, CheetahException {
+		//CheetahEngine.currentStepDefIndex++;
+		String  currentStepDescr = null;
+		
+		Field f = scenario.getClass().getDeclaredField("delegate");
+		f.setAccessible(true);
+		TestCaseState tcs = (TestCaseState) f.get(scenario);
+		
+		Field f2 = tcs.getClass().getDeclaredField("testCase");
+	    f2.setAccessible(true);
+	    TestCase r = (TestCase) f2.get(tcs);
+
+		    //You need to filter out before/after hooks
+		    List<PickleStepTestStep> stepDefs = r.getTestSteps()
+		            .stream()
+		            .filter(x -> x instanceof PickleStepTestStep)
+		            .map(x -> (PickleStepTestStep) x)
+		            .collect(Collectors.toList());
+
+
+		    //This object now holds the information about the current step definition
+		    //If you are using pico container 
+		    //just store it somewhere in your world state object 
+		    //and to make it available in your step definitions.
+		    PickleStepTestStep currentStepDef = stepDefs
+		            .get(currentStepDefIndex);
+		    currentStepDescr = currentStepDef.getStep().getText();
+		    TestStep ts = stepDefs.get(currentStepDefIndex);
+		    
+		    currentStepDefIndex += 1;
+		    CheetahEngine.logger.logMessage(null, "CheetahEngine", currentStepDescr, Constants.LOG_INFO);
+			System.out.println(tcs.getStatus().toString());
+			CheetahEngine.logger.logMessage(null, "CheetahEngine", tcs.getStatus().toString(), Constants.LOG_INFO);
+			  if (tcs.getStatus().toString().equalsIgnoreCase("PASSED")) {
+				  CheetahEngine.reportLogger.log(Status.PASS, currentStepDescr); 
+			  }else if(tcs.getStatus().toString().equalsIgnoreCase("SKIPPED")) {
+				  CheetahEngine.reportLogger.log(Status.SKIP, currentStepDescr + " - <span style=\"color: #00ccff;\">[Skipped]</span>"); 
+			  }else if(tcs.getStatus().toString().equalsIgnoreCase("PENDING")) {
+				  CheetahEngine.reportLogger.log(Status.INFO, currentStepDescr + " - <span style=\"color: #ffcc00;\">[Pending]</span>"); 
+			  }else if(tcs.getStatus().toString().equalsIgnoreCase("UNDEFINED")) {
+				  CheetahEngine.reportLogger.log(Status.WARNING, currentStepDescr + " - <span style=\"color: #ff0000;\">[Missing Step definition]</span>"); 
+			  }else if(tcs.getStatus().toString().equalsIgnoreCase("AMBIGUOUS")) {
+				  CheetahEngine.reportLogger.log(Status.WARNING, currentStepDescr + " - <span style=\"color: #ff0000;\">[Ambiguous Statement]</span>");
+			  }else if(tcs.getStatus().toString().equalsIgnoreCase("UNUSED")) {
+				  CheetahEngine.reportLogger.log(Status.ERROR, currentStepDescr + " - <span style=\"color: #ff0000;\">[Unused]</span>");
+			  }else {
+				  CheetahEngine.reportLogger.log(Status.FAIL, currentStepDescr + " - <span style=\"color: #ff0000;\">[Failed]</span> \n ");
+				  
+				  WebDriver augmentedDriver = new Augmenter().augment(CheetahEngine.getDriverInstance());
+				  String source = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BASE64);
+				  CheetahEngine.reportLogger.addScreenCaptureFromBase64String(source);
+				
+				  Throwable t = new Throwable();
+				  t.fillInStackTrace();
+				  CheetahEngine.reportLogger.error(t);
+				  
+				  }
+			//CheetahEngine.reportLogger.log(Status.INFO, currentStepDescr); 
+	}
+		
 }
