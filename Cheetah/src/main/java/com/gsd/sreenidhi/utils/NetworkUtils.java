@@ -68,5 +68,12 @@ public class NetworkUtils {
 			throw new CheetahException(unknownHostException);
 		}
 	}
+	
+	public static String getHostName() throws UnknownHostException {
+		 InetAddress addr = InetAddress.getLocalHost();
+		  byte[] ipAddr = addr.getAddress();
+		  String hostname = addr.getHostName();
+		  return hostname;
+	}
 
 }

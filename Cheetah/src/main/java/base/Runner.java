@@ -1,6 +1,8 @@
 package base;
 
 
+import java.io.IOException;
+
 import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 
@@ -28,7 +30,7 @@ public class Runner extends CheetahEngine{
     }
     
     @AfterStep
-    public void processStep(io.cucumber.java.Scenario scenarioImpl) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, CheetahException {
+    public void processStep(io.cucumber.java.Scenario scenarioImpl) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, CheetahException, IOException {
     	CheetahEngine.afterStep(scenarioImpl);
     }
 

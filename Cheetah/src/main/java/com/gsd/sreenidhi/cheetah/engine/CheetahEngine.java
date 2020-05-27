@@ -1,9 +1,11 @@
 package com.gsd.sreenidhi.cheetah.engine;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Enumeration;
@@ -231,7 +233,7 @@ public class CheetahEngine {
 			cheetahForm.setSplitVideo(false);
 			splitVid=false;
 		}
-		
+		CheetahForm.splitVideo = splitVid;
 		return splitVid;
 	}
 
@@ -471,6 +473,22 @@ public class CheetahEngine {
 
 							logger.logMessage(null, CheetahEngine.class.getName(),
 									"Screenshot Captured - " + driver.getCurrentUrl(), Constants.LOG_INFO, false);
+								
+							String fileName = Cognator.generateRandomStringAlphaNumeric(8);
+							 try {
+							  StringBuffer imagePath = new StringBuffer(Paths.get(".").toAbsolutePath().normalize().toString()
+										+ File.separator + "target" + File.separator + "report" + File.separator + "img" + File.separator + fileName + ".png");
+								WebDriver augDriver = new Augmenter().augment(CheetahEngine.getDriverInstance());
+								File source = ((TakesScreenshot) augDriver).getScreenshotAs(OutputType.FILE);
+								String path = imagePath.toString();
+								
+								org.apache.commons.io.FileUtils.copyFile(source, new File(path));
+								CheetahEngine.reportLogger.addScreenCaptureFromPath(path);
+							 } catch (IOException e) {
+								throw new CheetahException(e);
+							}
+							
+						
 						}
 					}
 				} catch (WebDriverException somePlatformsDontSupportScreenshots) {
@@ -675,7 +693,7 @@ public class CheetahEngine {
 
 	
 	public static void afterStep(io.cucumber.java.Scenario scenario) 
-			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, CheetahException {
+			throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, CheetahException, IOException {
 		//CheetahEngine.currentStepDefIndex++;
 		String  currentStepDescr = null;
 		
@@ -723,9 +741,16 @@ public class CheetahEngine {
 			  }else {
 				  CheetahEngine.reportLogger.log(Status.FAIL, currentStepDescr + " - <span style=\"color: #ff0000;\">[Failed]</span> \n ");
 				  
-				  WebDriver augmentedDriver = new Augmenter().augment(CheetahEngine.getDriverInstance());
-				  String source = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BASE64);
-				  CheetahEngine.reportLogger.addScreenCaptureFromBase64String(source);
+				  String fileName = Cognator.generateRandomStringAlphaNumeric(8);
+				  
+				  StringBuffer imagePath = new StringBuffer(Paths.get(".").toAbsolutePath().normalize().toString()
+							+ File.separator + "target" + File.separator + "report" + File.separator + "img" + File.separator + fileName + ".png");
+					WebDriver augmentedDriver = new Augmenter().augment(CheetahEngine.getDriverInstance());
+					File source = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.FILE);
+					String path = imagePath.toString();
+					org.apache.commons.io.FileUtils.copyFile(source, new File(path));
+					
+				  CheetahEngine.reportLogger.addScreenCaptureFromPath(path);
 				
 				  Throwable t = new Throwable();
 				  t.fillInStackTrace();

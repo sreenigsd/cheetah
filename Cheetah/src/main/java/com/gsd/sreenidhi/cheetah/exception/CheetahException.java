@@ -138,6 +138,10 @@ public class CheetahException extends Exception {
 			exceptionMessage = "NullPointerException====>" + CAUSE + cause + "\n " + exception.getMessage();
 		} else if (exception instanceof MavenInvocationException) {
 			exceptionMessage = "MavenInvocationException====>" + CAUSE + cause + "\n " + exception.getMessage();
+		} else if (exception instanceof IOException) {
+			exceptionMessage = "IOException====>" + CAUSE + cause + "\n " + exception.getMessage();
+		} else if (exception instanceof UnknownHostException) {
+			exceptionMessage = "UnknownHostException====>" + CAUSE + cause + "\n " + exception.getMessage();
 		} else {
 			exceptionMessage = "Exception ====> \n " + CAUSE + cause + "\n " + exception.getMessage();
 		}
