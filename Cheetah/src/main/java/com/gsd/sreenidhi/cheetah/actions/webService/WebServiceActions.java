@@ -25,7 +25,7 @@ import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.utils.jsonUtils;
 
-import cucumber.api.DataTable;
+import io.cucumber.datatable.DataTable;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;

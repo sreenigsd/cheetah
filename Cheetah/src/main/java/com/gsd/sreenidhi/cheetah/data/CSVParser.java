@@ -28,7 +28,7 @@ import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.forms.Constants;
 
-import au.com.bytecode.opencsv.CSVReader;
+import com.opencsv.CSVReader;
 
 /**
  * @author Sreenidhi, Gundlupet
@@ -94,8 +94,7 @@ public class CSVParser {
 					false);
 			// ** Now using the OpenCSV **//
 
-			reader = new CSVReader(new FileReader(fu.getFile("INPUT", csvFileName).getAbsolutePath()),
-					delimiter.charAt(0));
+			reader = new CSVReader(new FileReader(fu.getFile("INPUT", csvFileName).getAbsolutePath()));
 
 			String[] nextLine;
 			int line = 0;

@@ -9,7 +9,7 @@
 
 	<properties>
 		<project.name>Playground</project.name>
-		<cheetah.version>1.1.14</cheetah.version>
+		<cheetah.version>1.2.x</cheetah.version>
 		<tag></tag>
 	</properties>
 
@@ -81,9 +81,16 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>4.13</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<dependency>
+	      <groupId>org.testng</groupId>
+	      <artifactId>testng</artifactId>
+	      <version>7.1.0</version>
+	      <scope>test</scope>
+	    </dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
 		<dependency>
@@ -96,8 +103,7 @@
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.8-dmr</version>
-			<classifier>dmr</classifier>
+			<version>8.0.21</version>
 		</dependency>
 
 
@@ -116,6 +122,7 @@
 			<artifactId>mongodb-driver</artifactId>
 			<version>3.5.0</version>
 		</dependency>
+		
 	</dependencies>
 
 	<build>
@@ -269,6 +276,10 @@
 									<token>glue-link</token>
 									<value>${glue}</value>
 								</replacement>
+								<replacement>
+									<token>feature-link</token>
+									<value>${features}</value>
+								</replacement>
 							</replacements>
 						</configuration>
 					</execution>
@@ -320,25 +331,26 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-surefire-plugin</artifactId>
-					<version>2.20</version>
+					<version>2.22.2</version>
 					<dependencies>
 						<dependency>
-							<groupId>org.apache.maven.surefire</groupId>
-							<artifactId>surefire-junit47</artifactId>
-							<version>2.20</version>
+						    <groupId>org.apache.maven.surefire</groupId>
+						    <artifactId>surefire-testng</artifactId>
+						    <version>2.22.2</version>
 						</dependency>
 						<dependency>
-							<groupId>info.cukes</groupId>
-							<artifactId>cucumber-java</artifactId>
-							<version>1.2.5</version>
+						    <groupId>io.cucumber</groupId>
+						    <artifactId>cucumber-java</artifactId>
+						    <version>5.7.0</version>
 						</dependency>
+						
 						<dependency>
-							<groupId>info.cukes</groupId>
-							<artifactId>cucumber-junit</artifactId>
-							<version>1.2.5</version>
+						    <groupId>io.cucumber</groupId>
+						    <artifactId>cucumber-testng</artifactId>
+						    <version>5.7.0</version>
 						</dependency>
 					</dependencies>
-				</plugin>
+			    </plugin>
 			</plugins>
 		</pluginManagement>
 	</build>
@@ -348,32 +360,31 @@
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-api</artifactId>
-				<version>3.9.1</version>
+				<version>3.141.59</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>
-				<version>3.9.1</version>
+				<version>3.141.59</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-ie-driver</artifactId>
-				<version>3.9.1</version>
+				<version>3.141.59</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-support</artifactId>
-				<version>3.9.1</version>
+				<version>3.141.59</version>
 				<scope>provided</scope>
 			</dependency>
 			<dependency>
-				<groupId>info.cukes</groupId>
-				<artifactId>cucumber-java</artifactId>
-				<version>1.2.5</version>
-				<scope>provided</scope>
+			    <groupId>io.cucumber</groupId>
+			    <artifactId>cucumber-java</artifactId>
+			    <version>5.7.0</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

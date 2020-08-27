@@ -26,7 +26,7 @@ import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.utils.CalendarUtils;
 import com.gsd.sreenidhi.utils.FileUtils;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.base.expression.AbstractSimpleExpression;
 import net.sf.dynamicreports.report.builder.DynamicReports;

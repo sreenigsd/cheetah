@@ -2,6 +2,8 @@ package com.gsd.sreenidhi.cheetah.reporting;
 
 import java.util.Date;
 
+import io.cucumber.java.Scenario;
+
 /**
  * @author Sreenidhi, Gundlupet
  *
@@ -16,21 +18,21 @@ public class ReportingBean {
 	public Date testStartTime;
 	public Date testEndTime;
 	public long executionTime;
-	public cucumber.api.Scenario scenarioImpl;
+	public Scenario scenarioImpl;
 	public gherkin.formatter.model.Scenario gherkingScenario;
 	public String scenarioExecutionId;
 	/**
 	 * @return the scenarioImpl
 	 */
-	public cucumber.api.Scenario getScenarioImpl() {
+	public io.cucumber.java.Scenario getScenarioImpl() {
 		return scenarioImpl;
 	}
 	
 	/**
-	 * @param scenarioImpl the scenarioImpl to set
+	 * @param scenarioImpl2 the scenarioImpl to set
 	 */
-	public void setScenarioImpl(cucumber.api.Scenario scenarioImpl) {
-		this.scenarioImpl = scenarioImpl;
+	public void setScenarioImpl(Scenario scenarioImpl2) {
+		this.scenarioImpl = scenarioImpl2;
 	}
 	
 	/**

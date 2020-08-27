@@ -1,10 +1,12 @@
 package base;
 
 
-import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
+import java.io.IOException;
 
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
+import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
+import com.gsd.sreenidhi.cheetah.exception.CheetahException;
+
+import io.cucumber.java.*;
 
 
 
@@ -15,19 +17,22 @@ public class Runner extends CheetahEngine{
 	}
 	
 	@Before
-    public void prepareScenario() throws Exception{
-		CheetahEngine.generateBase(CheetahEngine.props.getProperty("app.name"));
-    }
+    public void prepareScenario(io.cucumber.java.Scenario scenarioImpl) throws Exception{
+		CheetahEngine.generateBase(scenarioImpl, CheetahEngine.props.getProperty("app.name"));
+	}
     
     @After
     /**
      * Embed a screenshot in test report if test is marked as failed
      */
-    public void processExecution(cucumber.api.Scenario scenarioImpl) throws Exception {
+    public void processExecution(io.cucumber.java.Scenario scenarioImpl) throws Exception {
     	CheetahEngine.processPostAction(scenarioImpl, CheetahEngine.props.getProperty("app.name"));
     }
     
-
+    @AfterStep
+    public void processStep(io.cucumber.java.Scenario scenarioImpl) throws NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException, CheetahException, IOException {
+    	CheetahEngine.afterStep(scenarioImpl);
+    }
 
 	
 

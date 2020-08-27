@@ -41,7 +41,7 @@ public class HTMLReportingEngine implements ReportingEngine {
 			reportDetail.setOutputName("cucumber-results");
 			reportDetail.setSourceFile("./target/cucumber.json");
 			reportDetail.setScreenShotLocation("./screenshot/");
-			reportDetail.execute(true, true);
+			reportDetail.execute();
 
 		} catch (IOException e) {
 			CheetahEngine.logger.logMessage(e, "HTMLReportingEngine",
@@ -53,12 +53,14 @@ public class HTMLReportingEngine implements ReportingEngine {
 					true);
 		}
 
+		
 		CucumberUsageReporting reportUsage = new CucumberUsageReporting();
 
 		reportUsage.setOutputDirectory("target/");
 		reportUsage.setJsonUsageFile("./target/cucumber-usage.json");
+		reportUsage.setOutputName("cucumber-usage");
 		try {
-			reportUsage.executeReport();
+			reportUsage.execute();
 
 		} catch (Exception e) {
 			CheetahEngine.logger.logMessage(e, "HTMLReportingEngine",
@@ -75,7 +77,7 @@ public class HTMLReportingEngine implements ReportingEngine {
 		options.setCoverageReport(true);
 		CucumberOverviewChartsReport reportChart = new CucumberOverviewChartsReport(options);
 		try {
-			reportChart.execute(true, false);
+			reportChart.execute(true);
 			// reportChart.exportToPDF(new
 			// File("./target/cucumber-reports-charts-report.html"),"testChart");
 		} catch (Exception e) {
@@ -135,8 +137,9 @@ public class HTMLReportingEngine implements ReportingEngine {
 		reportConsolidated.setPdfPageSize("A4 landscape");
 		reportConsolidated.setSourceFile("./target/cucumber.json");
 
+		String[] formats = new String[] {"json"};
 		try {
-			reportConsolidated.execute(new File("./resources/consolidated_batch.json"), false
+			reportConsolidated.execute(new File("./resources/consolidated_batch.json"), false ,formats
 			);
 			// reportConsolidated.exportToPDF(new
 			// File("./target/cucumber-results-batch-config1.html"),"Consolidated");

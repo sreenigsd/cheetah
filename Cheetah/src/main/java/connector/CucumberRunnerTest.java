@@ -1,20 +1,34 @@
 package connector;
 
+
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.UnknownHostException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.Rule;
-import org.junit.runner.RunWith;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.Augmenter;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
+import com.aventstack.extentreports.AnalysisStrategy;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.gsd.sreenidhi.automation.config.Configurator;
 import com.gsd.sreenidhi.forms.Constants;
-import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
+import com.gsd.sreenidhi.cheetah.actions.Cognator;
 import com.gsd.sreenidhi.cheetah.database.DBExecutor;
 import com.gsd.sreenidhi.cheetah.database.DBInitializer;
+import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
+import com.gsd.sreenidhi.cheetah.engine.CheetahForm;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.cheetah.reporting.Log;
 import com.gsd.sreenidhi.cheetah.reporting.Media;
@@ -24,36 +38,44 @@ import com.gsd.sreenidhi.cheetah.reporting.ReportingForm;
 import com.gsd.sreenidhi.cheetah.reporting.csv.CSVReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.html.HTMLReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.pdf.PDFReportingEngine;
-import com.gsd.sreenidhi.cheetah.runner.AfterSuite;
-import com.gsd.sreenidhi.cheetah.runner.BeforeSuite;
 import com.gsd.sreenidhi.cheetah.runner.ExtendedCucumberRunner;
 import com.gsd.sreenidhi.utils.CalendarUtils;
 import com.gsd.sreenidhi.utils.CheetahUtils;
 import com.gsd.sreenidhi.utils.FileUtils;
+import com.gsd.sreenidhi.utils.NetworkUtils;
 import com.gsd.sreenidhi.utils.SystemEnvironment;
 import com.gsd.sreenidhi.utils.ZipUtils;
 
-import cucumber.api.CucumberOptions;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
+//import org.junit.runner.RunWith;
+//import io.cucumber.junit.CucumberOptions;
+//import org.junit.Rule;
+//import org.junit.runner.RunWith;
+
+import io.cucumber.testng.CucumberOptions;
 //@RunWith(Cucumber.class)
 /**
  * @author Sreenidhi, Gundlupet
  *
  */
-@CucumberOptions(features = { "." }, 
-					glue = { "glue-link" }, 
-					plugin = { "json:target/cucumber.json",
-								"html:target/cucumber-html-report", 
-								"pretty:target/cucumber-pretty.txt", 
-								"usage:target/cucumber-usage.json",
-								"junit:target/cucumber-junit-results.xml", 
-								"rerun:src/test/resources/rerun.txt" }
-					,tags=""
-						)
 
-@RunWith(ExtendedCucumberRunner.class)
-//public class CucumberRunnerTest  extends AbstractTestNGCucumberTests{
-public class CucumberRunnerTest {
+
+//@RunWith(ExtendedCucumberRunner.class)
+@CucumberOptions(strict = true,
+features =  {"feature-link"} , 
+	glue =  {"glue-link"} , 
+	plugin = { "json:target/cucumber.json",
+				"html:target/cucumber-html-report", 
+				"pretty:target/cucumber-pretty.txt", 
+				"usage:target/cucumber-usage.json",
+				"junit:target/cucumber-junit-results.xml", 
+				"testng:target/cucumber-testng-tesults.xml",
+				"rerun:src/test/resources/rerun.txt" }
+	,tags=""
+		)
+public class CucumberRunnerTest  extends AbstractTestNGCucumberTests{
+//public class CucumberRunnerTest {
 
 	/**
 	 * This is the Test binding object. All tests are initiated and completed within
@@ -67,7 +89,7 @@ public class CucumberRunnerTest {
 	/**
 	 * Set retry count argument
 	 */
-	@Rule
+	//@Rule
 	public RetryRule retryRule = new RetryRule(3);
 
 	/**
@@ -77,7 +99,7 @@ public class CucumberRunnerTest {
 	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 */
 	@BeforeSuite
-	public static void setUp() throws CheetahException {
+	public static void setUp() throws CheetahException{
 
 		CheetahUtils CheetahUtils = new CheetahUtils();
 		CheetahEngine.app_name = "CHEETAH";
@@ -143,6 +165,31 @@ public class CucumberRunnerTest {
 				return true;
 			}
 		});
+		
+		CheetahEngine.report = new ExtentReports();
+		//CheetahEngine.report.setAnalysisStrategy(AnalysisStrategy.BDD);
+		CheetahEngine.report.setSystemInfo("Execution Tag: ", CheetahEngine.props.getProperty("execution.tag")!=null?CheetahEngine.props.getProperty("execution.tag"):"");
+		try {
+			CheetahEngine.report.setSystemInfo("Host Name: ", NetworkUtils.getHostName());
+		} catch (UnknownHostException e) {
+			throw new CheetahException(e); 
+		}
+		CheetahEngine.report.setSystemInfo("LAN Addr: ", NetworkUtils.getLocalHostLANAddress().toString());
+		CheetahEngine.report.setSystemInfo("User: ", System.getProperty("user.name"));
+		
+		
+		
+		CheetahEngine.htmlSparkReporter = new ExtentSparkReporter("./target/cheetah-test-automation-report.html");
+		CheetahEngine.htmlSparkReporter.config().setDocumentTitle("Cheetah Test Automation");
+		CheetahEngine.htmlSparkReporter.config().setReportName(CheetahEngine.props.getProperty("app.name"));
+		
+		CheetahEngine.htmlReporter = new ExtentHtmlReporter("./target/test-report.html");
+		CheetahEngine.htmlReporter.config().setDocumentTitle("Cheetah Test Automation");
+		
+		//CheetahEngine.report.attachReporter(CheetahEngine.htmlReporter);
+		CheetahEngine.report.attachReporter(CheetahEngine.htmlSparkReporter);
+		
+		
 	}
 
 	/**
@@ -152,7 +199,7 @@ public class CucumberRunnerTest {
 	 * @throws CheetahException Generic Exception Object that handles all exceptions
 	 */
 	@AfterSuite
-	public static void tearDown() throws CheetahException {
+	public static void tearDown() throws CheetahException{
 		CheetahEngine.cheetahForm.setEndTime(Calendar.getInstance().getTime());
 		processReports();
 		if (CheetahEngine.props.getProperty("close.browser") != null
@@ -217,6 +264,8 @@ public class CucumberRunnerTest {
 			DBExecutor.updateTransaction(transactionTime.toString(),
 					CheetahEngine.cheetahForm.getDbId() != null ? CheetahEngine.cheetahForm.getDbId().toString() : "");
 		}
+		
+		CheetahEngine.report.flush();
 	}
 
 	/**
@@ -346,4 +395,6 @@ public class CucumberRunnerTest {
 		reportingEnginehtml.generateReport();
 		reportingEnginehtml.consolidateReport();
 	}
+
+	
 }

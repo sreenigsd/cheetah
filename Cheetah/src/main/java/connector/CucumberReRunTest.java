@@ -1,19 +1,33 @@
 package connector;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.UnknownHostException;
+import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.junit.runner.RunWith;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.Augmenter;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
+import com.aventstack.extentreports.AnalysisStrategy;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.gsd.sreenidhi.automation.config.Configurator;
 import com.gsd.sreenidhi.forms.Constants;
-import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
+import com.gsd.sreenidhi.cheetah.actions.Cognator;
 import com.gsd.sreenidhi.cheetah.database.DBExecutor;
 import com.gsd.sreenidhi.cheetah.database.DBInitializer;
+import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
+import com.gsd.sreenidhi.cheetah.engine.CheetahForm;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.cheetah.reporting.Log;
 import com.gsd.sreenidhi.cheetah.reporting.Media;
@@ -23,37 +37,41 @@ import com.gsd.sreenidhi.cheetah.reporting.ReportingForm;
 import com.gsd.sreenidhi.cheetah.reporting.csv.CSVReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.html.HTMLReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.pdf.PDFReportingEngine;
-import com.gsd.sreenidhi.cheetah.runner.AfterSuite;
-import com.gsd.sreenidhi.cheetah.runner.BeforeSuite;
 import com.gsd.sreenidhi.cheetah.runner.ExtendedCucumberRunner;
 import com.gsd.sreenidhi.utils.CalendarUtils;
 import com.gsd.sreenidhi.utils.CheetahUtils;
 import com.gsd.sreenidhi.utils.FileUtils;
+import com.gsd.sreenidhi.utils.NetworkUtils;
 import com.gsd.sreenidhi.utils.SystemEnvironment;
 import com.gsd.sreenidhi.utils.ZipUtils;
 
-import cucumber.api.CucumberOptions;
-//import org.junit.BeforeClass;
-import cucumber.api.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
 
+//import org.junit.runner.RunWith;
+//import io.cucumber.junit.CucumberOptions;
+//import org.junit.Rule;
+//import org.junit.runner.RunWith;
+
+import io.cucumber.testng.CucumberOptions;
 //@RunWith(Cucumber.class)
 /**
  * @author Sreenidhi, Gundlupet
  *
  */
-@CucumberOptions(features = "@src/test/resources/rerun.txt", 
+//@RunWith(ExtendedCucumberRunner.class)
+@CucumberOptions(strict = true,
+features =  {"feature-link"} , 
 				glue = { "glue-link" }, 
 				plugin = {"json:target/cucumber.json", 
 						"html:target/cucumber-html-report", 
 						"pretty:target/cucumber-pretty.txt",
 						"usage:target/cucumber-usage.json", 
 						"junit:target/cucumber-junit-results.xml",
+						"testng:target/cucumber-testng-tesults.xml",
 						"rerun:src/test/resources/rerun.txt" }
-				)
-
-@RunWith(ExtendedCucumberRunner.class)
-//public class CucumberReRunTest  extends AbstractTestNGCucumberTests{
-public class CucumberReRunTest extends AbstractTestNGCucumberTests {
+			)
+public class CucumberReRunTest  extends AbstractTestNGCucumberTests{
+//public class CucumberReRunTest {
 
 	/**
 	 * This is the Test binding object. All tests are initiated and completed within
@@ -137,6 +155,31 @@ public class CucumberReRunTest extends AbstractTestNGCucumberTests {
 				return true;
 			}
 		});
+		
+		CheetahEngine.report = new ExtentReports();
+		//CheetahEngine.report.setAnalysisStrategy(AnalysisStrategy.BDD);
+		CheetahEngine.report.setSystemInfo("Execution Tag: ", CheetahEngine.props.getProperty("execution.tag")!=null?CheetahEngine.props.getProperty("execution.tag"):"");
+		try {
+			CheetahEngine.report.setSystemInfo("Host Name: ", NetworkUtils.getHostName());
+		} catch (UnknownHostException e) {
+			throw new CheetahException(e); 
+		}
+		CheetahEngine.report.setSystemInfo("LAN Addr: ", NetworkUtils.getLocalHostLANAddress().toString());
+		CheetahEngine.report.setSystemInfo("User: ", System.getProperty("user.name"));
+		
+		
+		
+		CheetahEngine.htmlSparkReporter = new ExtentSparkReporter("./target/cheetah-test-automation-report.html");
+		CheetahEngine.htmlSparkReporter.config().setDocumentTitle("Cheetah Test Automation");
+		CheetahEngine.htmlSparkReporter.config().setReportName(CheetahEngine.props.getProperty("app.name"));
+		
+		CheetahEngine.htmlReporter = new ExtentHtmlReporter("./target/test-report.html");
+		CheetahEngine.htmlReporter.config().setDocumentTitle("Cheetah Test Automation");
+		
+		//CheetahEngine.report.attachReporter(CheetahEngine.htmlReporter);
+		CheetahEngine.report.attachReporter(CheetahEngine.htmlSparkReporter);
+		
+		
 	}
 
 	/**
@@ -211,6 +254,8 @@ public class CucumberReRunTest extends AbstractTestNGCucumberTests {
 			DBExecutor.updateTransaction(transactionTime.toString(),
 					CheetahEngine.cheetahForm.getDbId() != null ? CheetahEngine.cheetahForm.getDbId().toString() : "");
 		}
+		
+		CheetahEngine.report.flush();
 	}
 
 	/**

@@ -73,7 +73,7 @@ public class Configurator {
 							dbConfigurator.setUsername(configRead.getString("username"));
 							dbConfigurator.setPassword(configRead.getString("password"));
 							dbConfigurator.setSchemaName(configRead.getString("schema-name"));
-							valid = false;
+							valid = true;
 						}catch(NullPointerException ex) {
 							valid = false;
 							Exception e = new NullPointerException("Missing required configurations. Please update your configurations and try again.");

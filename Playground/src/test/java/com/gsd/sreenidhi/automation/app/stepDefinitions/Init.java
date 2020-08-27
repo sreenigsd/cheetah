@@ -4,9 +4,7 @@ import org.openqa.selenium.By;
 
 import com.gsd.sreenidhi.cheetah.actions.selenium.SeleniumActions;
 
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import io.cucumber.java.en.*;
 
 public class Init {
 	@Given("^I launch the url$")
@@ -22,6 +20,11 @@ public class Init {
 	@When("^I navigate to the Complex Page$")
 	public void i_navigate_to_the_Complex_Page() throws Throwable {
 		SeleniumActions.click(By.xpath("//*[@id=\"navbar_global\"]/ul[1]/li[1]/div/div/a[1]"));
+	}
+	
+	@Then("the Complex page should be loaded")
+	public void the_Complex_page_should_be_loaded() {
+	    // Write code here that turns the phrase above into concrete actions
 	}
 
 	@Then("^I click on Checkbox(\\d+)$")
