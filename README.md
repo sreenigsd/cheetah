@@ -8,6 +8,7 @@ Cheetah is a **test automation framework** that has been developed to help autom
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<space>
 [![Gitter](https://badges.gitter.im/cheetah-automation/community.svg)](https://gitter.im/cheetah-automation/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Maven Central](https://img.shields.io/maven-central/v/com.sreenidhi-gsd/cheetah.svg)](https://mvnrepository.com/artifact/com.sreenidhi-gsd/cheetah)
+[![Donate](https://www.paypalobjects.com/en_US/RU/i/btn/btn_donateCC_LG.gif)](donate.md)
 </span>
 ## Motivation
 
