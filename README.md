@@ -5,7 +5,8 @@
 Cheetah is a **test automation framework** that has been developed to help automate testing efforts across multiple technologies including Web, Mobile, WebServices, Database, Mainframe, etc..
 <span style="align:center"><br/>
  <a href="https://bamboo.sreenidhi-gsd.com/browse/CHEETAH-BP2/"><img src="https://bamboo.sreenidhi-gsd.com/plugins/servlet/wittified/build-status/CHEETAH-BP2"></a><space>
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<space>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsreenigsd%2Fcheetah.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsreenigsd%2Fcheetah?ref=badge_shield)
+<space>
 [![Gitter](https://badges.gitter.im/cheetah-automation/community.svg)](https://gitter.im/cheetah-automation/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Maven Central](https://img.shields.io/maven-central/v/com.sreenidhi-gsd/cheetah.svg)](https://mvnrepository.com/artifact/com.sreenidhi-gsd/cheetah)
 [![Donate](https://www.paypalobjects.com/en_US/RU/i/btn/btn_donateCC_LG.gif)](donate.md)
@@ -66,3 +67,7 @@ You can also submit your feature requests on the Cheetah JIRA Project <a href="h
 ## Authors and Team
 * @sreenigsd - sreenidhi.gsd@gmail.com **Gundlupet Sreenidhi**  
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsreenigsd%2Fcheetah.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsreenigsd%2Fcheetah?ref=badge_large)
