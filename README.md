@@ -7,7 +7,8 @@ Cheetah is a **test automation framework** that has been developed to help autom
  <a href="https://bamboo.sreenidhi-gsd.com/browse/CHEETAH-BP2/"><img src="https://bamboo.sreenidhi-gsd.com/plugins/servlet/wittified/build-status/CHEETAH-BP2"></a><space>
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)<space>
 [![Gitter](https://badges.gitter.im/cheetah-automation/community.svg)](https://gitter.im/cheetah-automation/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
- </span>
+[![Maven Central](https://img.shields.io/maven-central/v/com.sreenidhi-gsd/cheetah.svg)](https://mvnrepository.com/artifact/com.sreenidhi-gsd/cheetah)
+</span>
 ## Motivation
 
 The motivation is to provide a capability for automated testing of softwares and products.  This is one objective to be achieved on the road to producing quality software products in an organization that is embracing the agile methodology.  The road to automation will require skillful navigation, since our route is uncharted. 
