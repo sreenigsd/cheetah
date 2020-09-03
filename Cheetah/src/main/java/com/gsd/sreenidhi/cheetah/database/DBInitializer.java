@@ -44,6 +44,9 @@ public class DBInitializer {
 					CheetahEngine.logger.logMessage(e, "DBInitializer", "Database validation failed !",
 							Constants.LOG_INFO, true);
 				}
+			}catch(Exception e)
+			{
+				throw new CheetahException(e);
 			}
 		} else {
 			CheetahEngine.logger.logMessage(null, "DBInitializer", "Database usage Disabled... :( ", Constants.LOG_INFO,
