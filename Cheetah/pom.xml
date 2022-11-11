@@ -89,18 +89,18 @@
 
 		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.8-dmr</version>
-			<classifier>dmr</classifier>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>8.0.31</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/oracle/ojdbc14_g -->
 		<dependency>
-			<groupId>oracle</groupId>
-			<artifactId>ojdbc14_g</artifactId>
-			<version>10.2.0.4</version>
+		    <groupId>oracle</groupId>
+		    <artifactId>ojdbc14_g</artifactId>
+		    <version>10.2.0.4</version>
 		</dependency>
+
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
 			<artifactId>jtds</artifactId>
@@ -110,7 +110,7 @@
 		<dependency>
 			<groupId>com.thoughtworks.xstream</groupId>
 			<artifactId>xstream</artifactId>
-			<version>1.4.11</version>
+			<version>1.4.19</version>
 		</dependency>
 
 		<!-- <dependency> <groupId>javax.servlet.jsp</groupId> <artifactId>javax.servlet.jsp-api</artifactId> 
@@ -125,14 +125,14 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
-			<version>5.2.8.RELEASE</version>
+			<version>5.3.23</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
-			<version>5.2.8.RELEASE</version>
+			<version>5.3.23</version>
 		</dependency>
 
 
@@ -148,17 +148,18 @@
 
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
-			<groupId>com.google.guava</groupId>
-			<artifactId>guava</artifactId>
-			<version>29.0-jre</version>
+		    <groupId>com.google.guava</groupId>
+		    <artifactId>guava</artifactId>
+		    <version>31.1-jre</version>
 		</dependency>
+
 
 
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.12</version>
+			<version>4.5.13</version>
 		</dependency>
 
 
@@ -166,7 +167,7 @@
 		<dependency>
 			<groupId>org.apache.maven.plugins</groupId>
 			<artifactId>maven-javadoc-plugin</artifactId>
-			<version>3.2.0</version>
+			<version>3.4.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
@@ -394,7 +395,7 @@
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.13.1</version>
+			<version>1.15.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.xerial</groupId>
@@ -403,20 +404,21 @@
 		<dependency>
 			<groupId>org.freemarker</groupId>
 			<artifactId>freemarker</artifactId>
-			<version>2.3.30</version>
+			<version>2.3.31</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mongodb</groupId>
 			<artifactId>mongodb-driver</artifactId>
-			<version>3.5.0</version>
+			<version>3.12.11</version>
 		</dependency>
 
-		<!-- -->
+		<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 		<dependency>
 			<groupId>com.aventstack</groupId>
 			<artifactId>extentreports</artifactId>
 			<version>4.1.5</version>
 		</dependency>
+
 
 
 		<dependency>
@@ -429,7 +431,7 @@
 		<dependency>
 			<groupId>net.sourceforge.dynamicreports</groupId>
 			<artifactId>dynamicreports-core</artifactId>
-			<version>6.11.1</version>
+			<version>6.12.1</version>
 		</dependency>
 
 		<dependency>
@@ -441,14 +443,14 @@
 		<dependency>
 			<groupId>net.sourceforge.dynamicreports</groupId>
 			<artifactId>dynamicreports-googlecharts</artifactId>
-			<version>6.11.1</version>
+			<version>6.12.1</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl -->
 		<dependency>
 		    <groupId>com.sun.xml.bind</groupId>
 		    <artifactId>jaxb-impl</artifactId>
-		    <version>2.3.3</version>
+		    <version>4.0.1</version>
 		</dependency>
 				
 
@@ -456,21 +458,22 @@
 		<dependency>
 		    <groupId>javax.xml.bind</groupId>
 		    <artifactId>jaxb-api</artifactId>
-		    <version>2.3.1</version>
+		    <version>2.4.0-b180830.0359</version>
 		</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/com.opencsv/opencsv -->
 		<dependency>
 		    <groupId>com.opencsv</groupId>
 		    <artifactId>opencsv</artifactId>
-		    <version>5.2</version>
+		    <version>5.7.1</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/net.serenity-bdd/serenity-core -->
 		<dependency>
 		    <groupId>net.serenity-bdd</groupId>
 		    <artifactId>serenity-core</artifactId>
-		    <version>2.2.8</version>
+		    <version>3.4.2</version>
 		</dependency>
 
 
@@ -560,7 +563,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.4.1</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
 				</configuration>
@@ -613,7 +616,7 @@
 			<plugin>
 				<groupId>org.sonatype.plugins</groupId>
 				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.8</version>
+				<version>1.6.13</version>
 				<extensions>true</extensions>
 				<configuration>
 					<serverId>ossrh</serverId>
@@ -807,7 +810,7 @@
 			<dependency>
 				<groupId>com.saucelabs</groupId>
 				<artifactId>ci-sauce</artifactId>
-				<version>1.144</version>
+				<version>1.163</version>
 			</dependency>
 			
 			<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
@@ -894,7 +897,7 @@
 			<dependency>
 				<groupId>mysql</groupId>
 				<artifactId>mysql-connector-java</artifactId>
-				<version>8.0.21</version>
+				<version>8.0.31</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

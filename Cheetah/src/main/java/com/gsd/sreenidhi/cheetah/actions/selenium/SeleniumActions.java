@@ -47,6 +47,7 @@ import com.gsd.sreenidhi.cheetah.actions.FormationStringStack;
 import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.engine.WindowHandleStack;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
+import com.gsd.sreenidhi.cheetah.reporting.Log;
 import com.gsd.sreenidhi.utils.DriverUtils;
 
 /**
@@ -63,6 +64,7 @@ public class SeleniumActions {
 	protected static final int DEFAULT_TIMEOUT = 10;
 	protected static WebDriver driver;
 	protected static String testName = new String();
+	public static Log logger;
 
 	/**
 	 * This function navigates to url
@@ -73,6 +75,7 @@ public class SeleniumActions {
 	 */
 	public static void navigate_to(String url) throws CheetahException {
 		try {
+			logger.logMessage(null, "SeleniumActions", "Navigating to url: "+ url, Constants.LOG_INFO, false);
 			CheetahEngine.getDriverInstance().navigate().to(url);
 		} catch (Exception e) {
 			throw new CheetahException(e);
