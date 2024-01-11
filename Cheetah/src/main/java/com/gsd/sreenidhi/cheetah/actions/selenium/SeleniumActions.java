@@ -292,7 +292,7 @@ public class SeleniumActions {
 	 */
 	public static void verify_url(CharSequence partialUrl) throws CheetahException {
 		try {
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 15);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(3));
 			wait.until(ExpectedConditions.urlContains((String) partialUrl));
 		} catch (Exception e) {
 			throw new CheetahException(e);
@@ -308,7 +308,7 @@ public class SeleniumActions {
 	 */
 	public static void verify_browser_title(String expectedTitle) throws CheetahException {
 		try {
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 2);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(2));
 			wait.until(ExpectedConditions.titleContains(expectedTitle));
 
 		} catch (NoSuchElementException e) {
@@ -326,7 +326,8 @@ public class SeleniumActions {
 	public static String get_browser_title() throws CheetahException {
 		String browserTitle;
 		try {
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 2);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(2));
+			
 			browserTitle = CheetahEngine.getDriverInstance().getTitle();
 		} catch (Exception e) {
 			throw new CheetahException(e);
@@ -542,7 +543,7 @@ public class SeleniumActions {
 	 */
 	public static void handle_alert(String action) throws CheetahException {
 		try {
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 2);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(2));
 			wait.until(ExpectedConditions.alertIsPresent());
 			if ("dismiss".equalsIgnoreCase(action)) {
 				CheetahEngine.getDriverInstance().switchTo().alert().dismiss();
@@ -564,7 +565,7 @@ public class SeleniumActions {
 	public static void wait_for_element(By locator) throws CheetahException {
 		try {
 			CheetahEngine.logger.logMessage(null, "SeleniumActions", "Locator: " + locator, Constants.LOG_INFO, false);
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Constants.GLOBAL_TIMEOUT);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(Constants.GLOBAL_TIMEOUT));
 			fluent_wait(locator);
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 		} catch (Exception e) {
@@ -1019,7 +1020,7 @@ public class SeleniumActions {
 	public static void mouse_over(By locator, By locator1) throws CheetahException {
 		try {
 			Actions action = new Actions(CheetahEngine.getDriverInstance());
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 15);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(5));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 			WebElement element = CheetahEngine.getDriverInstance().findElement(locator);
 			driverUtils.highlightElement(element);
@@ -1063,7 +1064,7 @@ public class SeleniumActions {
 	public static void Date_picker(By locator1, By locator2, String mon) throws CheetahException {
 		try {
 
-			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 15);
+			WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(5));
 			wait.until(ExpectedConditions.visibilityOfElementLocated(locator1));
 			WebElement element = CheetahEngine.getDriverInstance().findElement(locator1);
 			driverUtils.highlightElement(element);
@@ -1244,7 +1245,7 @@ public class SeleniumActions {
 	 *                          exceptions
 	 */
 	public static boolean validate_ajax_jQuery_load() throws CheetahException {
-		WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 30);
+		WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(10));
 		CheetahEngine.logger.logMessage(null, "SeleniumActions", "Validating AJAX and JQuery load.", Constants.LOG_INFO,
 				false);
 
@@ -1372,7 +1373,7 @@ public class SeleniumActions {
 	 */
 	@Deprecated
 	public static void uac_log_in(String userName, String password) throws CheetahException {
-		WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 10);
+		WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(5));
 		Alert alert = wait.until(ExpectedConditions.alertIsPresent());
 		// alert.authenticateUsing(new UserAndPassword(userName, password));
 	}
@@ -1524,9 +1525,10 @@ public class SeleniumActions {
 				|| (CheetahEngine.props.getProperty("use.fluent.wait") != null
 						&& "TRUE".equalsIgnoreCase(CheetahEngine.props.getProperty("use.fluent.wait")))) {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(CheetahEngine.getDriverInstance())
-					.withTimeout(Constants.GLOBAL_TIMEOUT, TimeUnit.SECONDS).pollingEvery(100, TimeUnit.MILLISECONDS)
-					.ignoring(NoSuchElementException.class);
-
+				    .withTimeout(Duration.ofSeconds(Constants.GLOBAL_TIMEOUT))
+				    .pollingEvery(Duration.ofMillis(100))
+				    .ignoring(NoSuchElementException.class);
+			
 			WebElement element = wait.until(new Function<WebDriver, WebElement>() {
 				public WebElement apply(WebDriver driver) {
 					return driver.findElement(locator);
@@ -1587,7 +1589,7 @@ public class SeleniumActions {
 	 *                          exceptions
 	 */
 	public static boolean isAlertPresent() throws CheetahException {
-		WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), 5);
+		WebDriverWait wait = new WebDriverWait(CheetahEngine.getDriverInstance(), Duration.ofSeconds(5));
 		try {
 			if (wait.until(ExpectedConditions.alertIsPresent()) == null) {
 				return false;

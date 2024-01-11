@@ -3,7 +3,9 @@ package com.gsd.sreenidhi.cheetah.reporting;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
-import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.database.DBExecutor;
@@ -43,7 +45,8 @@ public class Log {
 	public void logMessage(Exception e, String location, String message, String priority)
 			throws CheetahException {
 
-		log = Logger.getLogger("APP");
+		log = LogManager.getLogger("APP");
+
 		SendMail email = new SendMail();
 
 		String exceptionStackTrace;
@@ -103,7 +106,8 @@ public class Log {
 	public void logMessage(Exception e, String location, String message, String priority, boolean sendMail)
 			throws CheetahException {
 
-		log = Logger.getLogger("APP");
+		log = LogManager.getLogger("APP");
+
 		SendMail email = new SendMail();
 
 		String exceptionStackTrace;

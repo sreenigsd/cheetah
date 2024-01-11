@@ -436,14 +436,14 @@ public class CheetahEngine {
 
 			reportingForm.setStatusFail(reportingForm.getStatusFail() + 1);
 			try {
-				scenarioImpl.write("Current Page URL is " + driver.getCurrentUrl());
+				scenarioImpl.log("Current Page URL is " + driver.getCurrentUrl());
 
 				if (screenShotForTestType()) {
 					if (Constants.screenShotCapture && Constants.screenShotOnFail) {
 						// Take Screenshot on Failure
 						WebDriver augmentedDriver = new Augmenter().augment(driver);
 						byte[] screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BYTES);
-						scenarioImpl.embed(screenshot, "image/png");
+						scenarioImpl.attach(screenshot, "image/png",scenarioImpl.getName()+": "+scenarioImpl.getStatus()); 
 						bean.setScreenshot(screenshot);
 						DBExecutor.recordScreenshot(screenshot, Calendar.getInstance().getTime().toString(), "FAILURE",
 								retrieveScenarioExecutionId() + "_TestFail");
@@ -466,7 +466,7 @@ public class CheetahEngine {
 							// Take Screenshot on Success
 							WebDriver augmentedDriver = new Augmenter().augment(driver);
 							byte[] screenshot = ((TakesScreenshot) augmentedDriver).getScreenshotAs(OutputType.BYTES);
-							scenarioImpl.embed(screenshot, "image/png");
+							scenarioImpl.attach(screenshot, "image/png",scenarioImpl.getName()+": "+scenarioImpl.getStatus()); 
 							bean.setScreenshot(screenshot);
 							DBExecutor.recordScreenshot(screenshot, Calendar.getInstance().getTime().toString(),
 									"FAILURE", retrieveScenarioExecutionId() + "_TestPass");

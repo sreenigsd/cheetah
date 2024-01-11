@@ -2,8 +2,11 @@ package com.gsd.sreenidhi.automation.config;
 
 import java.io.File;
 
-import org.apache.commons.configuration.ConfigurationException;
-import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.configuration2.XMLConfiguration;
+import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.ex.ConfigurationException;
+
 
 import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
@@ -21,6 +24,7 @@ public class Configurator {
 	public ProxyConfigurator proxyConfigurator = null;
 	public ExecutionConfigurator executionConfigurator = null;
 	public DBConfigurator dbConfigurator = null;
+	public LicenseConfigurator licenseConfigurator = null;
 
 	public Configurator() {
 		dbConfigurator = new DBConfigurator();
@@ -28,6 +32,7 @@ public class Configurator {
 		mailConfigurator = new MailConfigurator();
 		proxyConfigurator = new ProxyConfigurator();
 		executionConfigurator = new ExecutionConfigurator();
+		licenseConfigurator = new LicenseConfigurator();
 		
 	}
 
@@ -43,6 +48,7 @@ public class Configurator {
 		loadConfig(mailConfigurator, fu.getConfiguration("mailer.xml"));
 		loadConfig(proxyConfigurator, fu.getConfiguration("proxy.xml"));
 		loadConfig(executionConfigurator, fu.getConfiguration("execution_conf.xml"));
+		loadConfig(licenseConfigurator, fu.getConfiguration("license.xml"));
 		
 	}
 
@@ -59,7 +65,12 @@ public class Configurator {
 			// XML File exists
 			CheetahEngine.logger.logMessage(null, this.getClass().getName(), "Loading configuration: " +configurationFile.toString() , Constants.LOG_INFO);
 			try {
-				configRead = new XMLConfiguration(configurationFile);
+				//configRead = new XMLConfiguration(configurationFile);
+				Parameters params = new Parameters();
+	            FileBasedConfigurationBuilder<XMLConfiguration> builder = new FileBasedConfigurationBuilder<>(XMLConfiguration.class)
+	                .configure(params.xml().setFile(configurationFile));
+	             configRead = builder.getConfiguration();
+	            
 				if (configurator.getClass().getTypeName().trim().equalsIgnoreCase("com.gsd.sreenidhi.automation.config.DBConfigurator")) {
 					dbConfigurator.setUseDB(configRead.getBoolean("use-db"));
 					if(dbConfigurator.isUseDB()) {
@@ -157,6 +168,19 @@ public class Configurator {
 					executionConfigurator.setAppiumHub(configRead.getString("appium-remote-url"));
 					executionConfigurator.setAppiumPort(configRead.getString("appium-remote-port"));
 					valid = true;
+				}else if (configurator.getClass().getTypeName().trim().equalsIgnoreCase("com.gsd.sreenidhi.automation.config.LicenseConfigurator")) {
+					//Get License
+					licenseConfigurator.setKey(configRead.getString("key"));
+					boolean validKey = true;
+					//TODO: check license here
+					if(!validKey) {
+						valid = false;
+						CheetahEngine.logger.logMessage(null, this.getClass().getName(), "Invalid License Key", Constants.LOG_ERROR);
+					}else {
+						CheetahEngine.logger.logMessage(null, this.getClass().getName(), "Valid License Key Found!", Constants.LOG_INFO);
+						valid = true;	
+					}
+					
 				}else {
 					valid = true;
 				}
@@ -208,6 +232,11 @@ public class Configurator {
 				//Execution will continue without using proxy
 				proxyConfigurator.setUseProxy(false);
 				proxyConfigurator.setUseProxyPac(false);
+			}else if (configurator.getClass().getTypeName().equalsIgnoreCase("com.gsd.sreenidhi.automation.config.LicenseConfigurator")) {
+				//Get License
+				licenseConfigurator.setKey(null);
+				CheetahEngine.logger.logMessage(null, this.getClass().getName(), "Invalid License Key", Constants.LOG_WARN);
+				System.exit(1);
 			}else {
 				//Executions will continue
 			}

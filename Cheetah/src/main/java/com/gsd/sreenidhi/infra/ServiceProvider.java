@@ -60,7 +60,6 @@ public class ServiceProvider {
 						Constants.LOG_INFO, false);
 
 				capabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
-				capabilities.setJavascriptEnabled(true);
 				// Create proxy class object
 
 				capabilities.setPlatform(Platform.WINDOWS);
@@ -71,23 +70,6 @@ public class ServiceProvider {
 				case Constants.FIREFOX_BROWSER:
 					capabilities.setBrowserName("firefox");
 					break;
-				case Constants.IE_BROWSER:
-					capabilities = DesiredCapabilities.internetExplorer();
-					capabilities.setBrowserName("internet explorer");
-					capabilities.setPlatform(Platform.WINDOWS);
-					capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-							true);
-					capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
-					// capabilities.setCapability(InternetExplorerDriver.IE_SWITCHES,
-					// true);
-					capabilities.setCapability("ie.ensureCleanSession", true);
-					capabilities.setCapability("forceCreateProcessApi", true);
-					capabilities.setCapability("ignoreProtectedModeSettings", true);
-					capabilities.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
-					capabilities.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL,
-							CheetahEngine.props.getProperty("app.env.url"));
-					capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
-					break;
 				case Constants.EDGE_BROWSER:
 					capabilities.setBrowserName("edge");
 					break;
@@ -95,20 +77,7 @@ public class ServiceProvider {
 					capabilities.setBrowserName("opera");
 					break;
 				default:
-					capabilities = DesiredCapabilities.internetExplorer();
-					capabilities.setBrowserName("internet explorer");
-					capabilities.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,
-							true);
-					capabilities.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
-					// capabilities.setCapability(InternetExplorerDriver.IE_SWITCHES,
-					// true);
-					capabilities.setCapability("ie.ensureCleanSession", true);
-					capabilities.setCapability("forceCreateProcessApi", true);
-					capabilities.setCapability("ignoreProtectedModeSettings", true);
-					capabilities.setCapability(InternetExplorerDriver.ENABLE_PERSISTENT_HOVERING, false);
-					capabilities.setCapability(InternetExplorerDriver.INITIAL_BROWSER_URL,
-							CheetahEngine.props.getProperty("app.env.url"));
-					capabilities.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+					capabilities.setBrowserName("chrome");
 					break;
 				}
 

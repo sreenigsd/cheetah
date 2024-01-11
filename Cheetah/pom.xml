@@ -71,6 +71,16 @@
 			<groupId>com.gsd.sreenidhi</groupId>
 			<artifactId>deploy</artifactId>
 			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/deploy-1.8.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.gsd.sreenidhi</groupId>
+			<artifactId>ssl</artifactId>
+			<version>1.8</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/lib/ssl.jar</systemPath>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/com.sikulix/sikulixsetup <dependency> 
@@ -85,19 +95,21 @@
 		</dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 		<dependency>
-		    <groupId>mysql</groupId>
-		    <artifactId>mysql-connector-java</artifactId>
-		    <version>8.0.31</version>
+		    <groupId>com.mysql</groupId>
+		    <artifactId>mysql-connector-j</artifactId>
+		    <version>8.2.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/oracle/ojdbc14_g -->
+
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc10 -->
 		<dependency>
-		    <groupId>oracle</groupId>
-		    <artifactId>ojdbc14_g</artifactId>
-		    <version>10.2.0.4</version>
+		    <groupId>com.oracle.database.jdbc</groupId>
+		    <artifactId>ojdbc10</artifactId>
+		    <version>19.21.0.0</version>
 		</dependency>
+
 
 		<dependency>
 			<groupId>net.sourceforge.jtds</groupId>
@@ -111,14 +123,35 @@
 			<version>1.4.19</version>
 		</dependency>
 
-		<!-- <dependency> <groupId>javax.servlet.jsp</groupId> <artifactId>javax.servlet.jsp-api</artifactId> 
-			<version>2.3.1</version> </dependency> -->
+<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20231013</version>
+</dependency>
 
+	
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
+		<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>jakarta.mail</artifactId>
+		    <version>2.0.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sun.activation/jakarta.activation -->
+		<dependency>
+		    <groupId>com.sun.activation</groupId>
+		    <artifactId>jakarta.activation</artifactId>
+		    <version>2.0.1</version>
+		</dependency>
+
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -206,11 +239,14 @@
 
 
 		<!-- java Dependencies -->
-		<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
+			<dependency>
+			    <groupId>jakarta.servlet</groupId>
+			    <artifactId>jakarta.servlet-api</artifactId>
+			    <version>6.1.0-M1</version>
+			    <scope>provided</scope>
+			</dependency>
+
 
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
@@ -219,10 +255,27 @@
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
-		<dependency>
-		    <groupId>org.apache.logging.log4j</groupId>
-		    <artifactId>log4j-core</artifactId>
-		</dependency>
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.22.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j2-impl -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-slf4j2-impl</artifactId>
+    <version>2.22.1</version>
+    <scope>test</scope>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/com.sun.mail/jakarta.mail -->
+<dependency>
+    <groupId>com.sun.mail</groupId>
+    <artifactId>jakarta.mail</artifactId>
+    <version>2.0.1</version>
+</dependency>
+
 
 
 
@@ -291,12 +344,7 @@
 			<dependency> <groupId>org.seleniumhq.selenium</groupId> <artifactId>htmlunit-driver</artifactId> 
 			<version>2.28</version> </dependency> -->
 
-		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-htmlunit-driver -->
-		<dependency>
-			<groupId>org.seleniumhq.selenium</groupId>
-			<artifactId>selenium-htmlunit-driver</artifactId>
-		</dependency>
-
+	
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-ie-driver -->
 		<dependency>
@@ -355,17 +403,33 @@
 			<artifactId>sauce_java_common</artifactId>
 		</dependency>
 
+<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+<dependency>
+    <groupId>commons-io</groupId>
+    <artifactId>commons-io</artifactId>
+    <version>2.15.1</version>
+</dependency>
+
+<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-configuration2 -->
+<dependency>
+    <groupId>org.apache.commons</groupId>
+    <artifactId>commons-configuration2</artifactId>
+    <version>2.9.0</version>
+</dependency>
+
+<dependency>
+    <groupId>commons-beanutils</groupId>
+    <artifactId>commons-beanutils</artifactId>
+    <version>1.9.4</version> <!-- Use the latest version -->
+</dependency>
+
 		<!-- https://mvnrepository.com/artifact/com.saucelabs/ci-sauce -->
 		<dependency>
 			<groupId>com.saucelabs</groupId>
 			<artifactId>ci-sauce</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
-		<dependency>
-		    <groupId>javax.mail</groupId>
-		    <artifactId>javax.mail-api</artifactId>
-		</dependency>
+		
 			
 		<dependency>
 			<groupId>org.apache.maven.surefire</groupId>
@@ -669,31 +733,19 @@
 
 	<dependencyManagement>
 		<dependencies>
-			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-api</artifactId>
-				<version>3.141.59</version>
-			</dependency>
+			
 			<dependency>
 				<groupId>org.testng</groupId>
 				<artifactId>testng</artifactId>
 				<version>7.1.0</version>
 			</dependency>
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>4.0.1</version>
-			</dependency>
+			
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
 				<version>4.13</version>
 			</dependency>
-			<dependency>
-			    <groupId>org.apache.logging.log4j</groupId>
-			    <artifactId>log4j-core</artifactId>
-			    <version>2.13.3</version>
-			</dependency>
+		
 
 			<dependency>
 				<groupId>org.codehaus.cargo</groupId>
@@ -702,18 +754,20 @@
 			</dependency>
 
 			
+			<!-- https://mvnrepository.com/artifact/io.cucumber/gherkin -->
 			<dependency>
 			    <groupId>io.cucumber</groupId>
 			    <artifactId>gherkin</artifactId>
-			    <version>13.0.0</version>
+			    <version>27.0.0</version>
 			</dependency>
+
 
 
 			<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-core -->
 			<dependency>
 			    <groupId>io.cucumber</groupId>
 			    <artifactId>cucumber-core</artifactId>
-			    <version>5.7.0</version>
+			     <version>7.15.0</version>
 			</dependency>
 
 
@@ -721,14 +775,14 @@
 			<dependency>
 			    <groupId>io.cucumber</groupId>
 			    <artifactId>cucumber-junit</artifactId>
-			    <version>5.7.0</version>
+			     <version>7.15.0</version>
 			</dependency>
 
 			<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-testng -->
 			<dependency>
 			    <groupId>io.cucumber</groupId>
 			    <artifactId>cucumber-testng</artifactId>
-			    <version>5.7.0</version>
+			     <version>7.15.0</version>
 			</dependency>
 
 
@@ -736,7 +790,7 @@
 			<dependency>
 			    <groupId>io.cucumber</groupId>
 			    <artifactId>cucumber-java</artifactId>
-			    <version>5.7.0</version>
+			     <version>7.15.0</version>
 			</dependency>
 
 
@@ -752,7 +806,7 @@
 			<dependency>
 			    <groupId>net.masterthought</groupId>
 			    <artifactId>cucumber-reporting</artifactId>
-			    <version>5.3.0</version>
+			     <version>5.7.8</version>
 			</dependency>
 
 			<dependency>
@@ -760,46 +814,54 @@
 				<artifactId>mockito-all</artifactId>
 				<version>1.10.19</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>org.seleniumhq.selenium</groupId>
+				<artifactId>selenium-api</artifactId>
+				<version>4.16.1</version>
+			</dependency>
+			
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-ie-driver</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-chrome-driver</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-firefox-driver</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-edge-driver</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-safari-driver</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-opera-driver</artifactId>
-				<version>3.141.59</version>
+				<version>4.4.0</version>
 			</dependency>
 			<dependency>
-				<groupId>com.saucelabs.maven.plugin</groupId>
-				<artifactId>sauce-connect-plugin</artifactId>
-				<version>2.1.25</version>
+			    <groupId>com.saucelabs.maven.plugin</groupId>
+			    <artifactId>sauce-connect-plugin</artifactId>
+			    <version>2.1.25</version>
 			</dependency>
+
 			<dependency>
 				<groupId>com.saucelabs</groupId>
 				<artifactId>sauce_java_common</artifactId>
@@ -811,33 +873,28 @@
 				<version>1.163</version>
 			</dependency>
 			
-			<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
-			<dependency>
-			    <groupId>javax.mail</groupId>
-			    <artifactId>javax.mail-api</artifactId>
-			    <version>1.6.2</version>
-			</dependency>
-
-
+			
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-support</artifactId>
-				<version>3.141.59</version>
+				<version>4.16.1</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.surefire/surefire-testng -->
 			<dependency>
-				<groupId>org.apache.maven.surefire</groupId>
-				<artifactId>surefire-testng</artifactId>
-				<version>2.22.2</version>
+			    <groupId>org.apache.maven.surefire</groupId>
+			    <artifactId>surefire-testng</artifactId>
+			    <version>3.2.5</version>
 			</dependency>
+
 			<dependency>
 				<groupId>org.apache.maven.surefire</groupId>
 				<artifactId>surefire-testng-utils</artifactId>
-				<version>2.22.2</version>
+				<version>3.2.5</version>
 			</dependency>
 			<dependency>
 				<groupId>org.apache.maven.surefire</groupId>
 				<artifactId>surefire-grouper</artifactId>
-				<version>2.22.2</version>
+				<version>3.2.5</version>
 			</dependency>
 			<dependency>
 				<groupId>com.ibm.db2.jcc</groupId>
@@ -865,22 +922,19 @@
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>htmlunit-driver</artifactId>
-				<version>2.40.0</version>
+				<version>4.13.0</version>
 			</dependency>
+			
 			<dependency>
-				<groupId>org.seleniumhq.selenium</groupId>
-				<artifactId>selenium-htmlunit-driver</artifactId>
-				<version>2.52.0</version>
+			    <groupId>io.appium</groupId>
+			    <artifactId>java-client</artifactId>
+			    <version>9.0.0</version>
 			</dependency>
-			<dependency>
-				<groupId>io.appium</groupId>
-				<artifactId>java-client</artifactId>
-				<version>7.3.0</version>
-			</dependency>
+
 			<dependency>
 				<groupId>io.rest-assured</groupId>
 				<artifactId>rest-assured</artifactId>
-				<version>4.3.0</version>
+				<version>5.4.0</version>
 			</dependency>
 			<dependency>
 				<groupId>org.xerial</groupId>

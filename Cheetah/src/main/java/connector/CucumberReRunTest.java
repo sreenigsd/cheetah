@@ -44,7 +44,7 @@ import com.gsd.sreenidhi.utils.FileUtils;
 import com.gsd.sreenidhi.utils.NetworkUtils;
 import com.gsd.sreenidhi.utils.SystemEnvironment;
 import com.gsd.sreenidhi.utils.ZipUtils;
-
+import com.gsd.sreenidhi.automation.config.Configurator;
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 
 //import org.junit.runner.RunWith;
@@ -59,7 +59,7 @@ import io.cucumber.testng.CucumberOptions;
  *
  */
 //@RunWith(ExtendedCucumberRunner.class)
-@CucumberOptions(strict = true,
+@CucumberOptions(
 features =  {"feature-link"} , 
 				glue = { "glue-link" }, 
 				plugin = {"json:target/cucumber.json", 
@@ -101,7 +101,7 @@ public class CucumberReRunTest  extends AbstractTestNGCucumberTests{
 		String transactionID = CheetahUtils.generateTransaction();
 		Date transactionTime = Calendar.getInstance().getTime();
 
-		CheetahEngine.configurator = new Configurator();
+		CheetahEngine.configurator = new com.gsd.sreenidhi.automation.config.Configurator();
 		CheetahEngine.configurator.loadConfigurators();
 
 		try {

@@ -2,33 +2,23 @@ package connector;
 
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.net.UnknownHostException;
-import java.nio.file.Paths;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.Augmenter;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import com.aventstack.extentreports.AnalysisStrategy;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.gsd.sreenidhi.automation.config.Configurator;
-import com.gsd.sreenidhi.forms.Constants;
-import com.gsd.sreenidhi.cheetah.actions.Cognator;
 import com.gsd.sreenidhi.cheetah.database.DBExecutor;
 import com.gsd.sreenidhi.cheetah.database.DBInitializer;
 import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
-import com.gsd.sreenidhi.cheetah.engine.CheetahForm;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.cheetah.reporting.Log;
 import com.gsd.sreenidhi.cheetah.reporting.Media;
@@ -38,7 +28,7 @@ import com.gsd.sreenidhi.cheetah.reporting.ReportingForm;
 import com.gsd.sreenidhi.cheetah.reporting.csv.CSVReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.html.HTMLReportingEngine;
 import com.gsd.sreenidhi.cheetah.reporting.pdf.PDFReportingEngine;
-import com.gsd.sreenidhi.cheetah.runner.ExtendedCucumberRunner;
+import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.utils.CalendarUtils;
 import com.gsd.sreenidhi.utils.CheetahUtils;
 import com.gsd.sreenidhi.utils.FileUtils;
@@ -62,7 +52,7 @@ import io.cucumber.testng.CucumberOptions;
 
 
 //@RunWith(ExtendedCucumberRunner.class)
-@CucumberOptions(strict = true,
+@CucumberOptions(
 features =  {"feature-link"} , 
 	glue =  {"glue-link"} , 
 	plugin = { "json:target/cucumber.json",

@@ -16,7 +16,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 
-import org.apache.commons.configuration.ConfigurationException;
+import org.apache.commons.configuration2.ex.ConfigurationException;
 import org.apache.maven.shared.invoker.MavenInvocationException;
 import org.json.JSONException;
 import org.openqa.selenium.*;
@@ -80,8 +80,6 @@ public class CheetahException extends Exception {
 			exceptionMessage = "UnknownHostException ====>" + CAUSE + cause + "\n " + exception.getMessage();
 		} else if (exception instanceof SQLException) {
 			exceptionMessage = "SQL Exception ====>" + CAUSE + cause + "\n " + exception.getMessage();
-		} else if (exception instanceof ElementNotVisibleException) {
-			exceptionMessage = "ElementNotVisibleException====>" + CAUSE + cause + "\n " + exception.getMessage();
 		} else if (exception instanceof NoSuchElementException) {
 			exceptionMessage = "NoSuchElementException====>" + CAUSE + cause + "\n " + exception.getMessage();
 		}  else if (exception instanceof JavascriptException ) {
@@ -89,10 +87,7 @@ public class CheetahException extends Exception {
 		}else if (exception instanceof ElementNotInteractableException) {
 			exceptionMessage = "ElementNotInteractableException====>" + CAUSE + cause + "\n "
 					+ exception.getMessage();
-		} else if (exception instanceof ElementNotSelectableException) {
-			exceptionMessage = "ElementNotSelectableException====>" + CAUSE + cause + "\n "
-					+ exception.getMessage();
-		} else if (exception instanceof InvalidArgumentException) {
+		}  else if (exception instanceof InvalidArgumentException) {
 			exceptionMessage = "InvalidArgumentException====>" + CAUSE + cause + "\n " + exception.getMessage();
 		} else if (exception instanceof InvalidElementStateException) {
 			exceptionMessage = "InvalidElementStateException====>" + CAUSE + cause + "\n " + exception.getMessage();
