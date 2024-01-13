@@ -21,6 +21,8 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.codehaus.plexus.util.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -64,7 +66,8 @@ public class SeleniumActions {
 	protected static final int DEFAULT_TIMEOUT = 10;
 	protected static WebDriver driver;
 	protected static String testName = new String();
-	public static Log logger;
+	public static Logger logger = LogManager.getLogger(SeleniumActions.class);
+	   
 
 	/**
 	 * This function navigates to url
@@ -75,7 +78,8 @@ public class SeleniumActions {
 	 */
 	public static void navigate_to(String url) throws CheetahException {
 		try {
-			logger.logMessage(null, "SeleniumActions", "Navigating to url: "+ url, Constants.LOG_INFO, false);
+		//	logger.info("Navigating to url: "+ url);
+		//	logger.logMessage(null, "SeleniumActions", "Navigating to url: "+ url, Constants.LOG_INFO, false);
 			CheetahEngine.getDriverInstance().navigate().to(url);
 		} catch (Exception e) {
 			throw new CheetahException(e);

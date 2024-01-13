@@ -54,7 +54,7 @@ public class ServiceProvider {
 			String osPlatform = props.getProperty("os.platform");
 			String osPlatformVersion = props.getProperty("os.platform.version");
 			String browserVersion = props.getProperty("browser.version");
-
+		
 			if ("WINDOWS".equalsIgnoreCase(osPlatform)) {
 				CheetahEngine.logger.logMessage(null, this.getClass().getName(), "Browser: " + browser,
 						Constants.LOG_INFO, false);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <driver>
 	<ie-driver-path>IEDriverServer.exe</ie-driver-path>
-	<chrome-driver-path>chromedriver.exe</chrome-driver-path>
+	<chrome-driver-path>/Users/sreenidhi/Downloads/chromedriver-mac-arm64/chromedriver</chrome-driver-path>
 	<firefox-driver-path>geckodriver.exe</firefox-driver-path>
 	<edge-driver-path>msedgedriver.exe</edge-driver-path>
 	<opera-driver-path>operadriver.exe</opera-driver-path>

@@ -4,6 +4,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import com.gsd.sreenidhi.cheetah.actions.selenium.SeleniumActions;
@@ -11,11 +12,18 @@ import com.gsd.sreenidhi.cheetah.engine.CheetahEngine;
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.forms.Constants;
 
-import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.PointOption;
+
+import org.openqa.selenium.interactions.Pause;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.time.Duration;
+import java.util.Arrays;
 
 /**
  * @author Sreenidhi, Gundlupet
@@ -104,30 +112,9 @@ public class AppiumActions extends SeleniumActions {
 				"sx= " + startx + ",sy= " + starty + ",endx= " + endx + ",endy= " + endy, Constants.LOG_INFO, false);
 
 		// To swipe from bottom to top
-		for (int x = 0; x < swipes; x = x + 1) {
-			PointOption startpo = new PointOption();
-			startpo.withCoordinates(startx, starty);
-			
-			LongPressOptions startlpo = new LongPressOptions();
-			startlpo.withPosition(startpo);
-			
-			PointOption endpo = new PointOption();
-			endpo.withCoordinates(endx, endy);
-			
-			
-			if ("ANDROID".equalsIgnoreCase(properties.getProperty("os.platform"))) {
-				// ((AndroidDriver)CheetahEngine.getDriverInstance()).swipe(startx,
-				// starty, endx, endy, power);
-				
-				new TouchAction((AndroidDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
-						.moveTo(endpo).release().perform();
-			} else {
-				// ((IOSDriver)CheetahEngine.getDriverInstance()).swipe(startx,
-				// starty, endx, endy, power);
-				new TouchAction((IOSDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
-						.moveTo(endpo).release().perform();
-			}
-		}
+		for (int x = 0; x < swipes; x++) {
+	        scroll(CheetahEngine.getDriverInstance(), startx, starty, endx, endy);
+	    }
 
 	}
 
@@ -143,45 +130,17 @@ public class AppiumActions extends SeleniumActions {
 	 * @throws CheetahException
 	 *             Generic Exception Object that handles all exceptions
 	 */
-	@SuppressWarnings("rawtypes")
-	public static void scroll_down(By locator, int swipes, int power) throws CheetahException {
-		Properties properties = CheetahEngine.props;
+	private static void scroll(WebDriver driver, int startX, int startY, int endX, int endY) {
+	    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+	    Sequence sequence = new Sequence(finger, 0);
 
-		WebElement body = CheetahEngine.getDriverInstance().findElement(locator);
-		int wide = body.getSize().width;
-		int hgt = body.getSize().height;
-		int startx = wide / 2;
-		int endx = wide / 2;
-		int starty = (int) (hgt * (0.3));
-		int endy = (int) (hgt * (0.7));
-		CheetahEngine.logger.logMessage(null, "AppiumActions",
-				"sx= " + startx + ",sy= " + starty + ",endx= " + endx + ",endy= " + endy, Constants.LOG_INFO, false);
+	    sequence.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY));
+	    sequence.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+	    sequence.addAction(new Pause(finger, Duration.ofMillis(200))); // Pause duration can be adjusted
+	    sequence.addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), endX, endY));
+	    sequence.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
-		// To swipe from top to bottom
-		for (int x = 0; x < swipes; x = x + 1) {
-			
-			PointOption startpo = new PointOption();
-			startpo.withCoordinates(startx, starty);
-			
-			LongPressOptions startlpo = new LongPressOptions();
-			startlpo.withPosition(startpo);
-			
-			PointOption endpo = new PointOption();
-			endpo.withCoordinates(endx, endy);
-			
-			if ("ANDROID".equalsIgnoreCase(properties.getProperty("os.platform"))) {
-				// ((AndroidDriver)
-				// CheetahEngine.getDriverInstance()).swipe(startx, starty, endx,
-				// endy, power);
-				new TouchAction((AndroidDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
-						.moveTo(endpo).release().perform();
-			} else {
-				// ((IOSDriver) CheetahEngine.getDriverInstance()).swipe(startx,
-				// starty, endx, endy, power);
-				new TouchAction((IOSDriver) CheetahEngine.getDriverInstance()).longPress(startlpo)
-						.moveTo(endpo).release().perform();
-			}
-		}
+	    ((RemoteWebDriver) driver).perform(Arrays.asList(sequence));
 	}
 
 }

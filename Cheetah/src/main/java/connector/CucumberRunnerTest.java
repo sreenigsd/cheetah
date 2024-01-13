@@ -378,12 +378,12 @@ public class CucumberRunnerTest  extends AbstractTestNGCucumberTests{
 		reportingEngine.consolidateReport();
 		reportingEngine.recordHistory();
 
-		ReportingEngine reportingEnginePDF = new PDFReportingEngine();
-		reportingEnginePDF.generateReport();
-
-		ReportingEngine reportingEnginehtml = new HTMLReportingEngine();
-		reportingEnginehtml.generateReport();
-		reportingEnginehtml.consolidateReport();
+//		ReportingEngine reportingEnginehtml = new HTMLReportingEngine();
+//		reportingEnginehtml.generateReport();
+//		reportingEnginehtml.consolidateReport();
+//		
+//		ReportingEngine reportingEnginePDF = new PDFReportingEngine();
+//		reportingEnginePDF.generateReport();
 	}
 
 	

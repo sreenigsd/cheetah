@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.Random;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +19,11 @@ import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.utils.CheetahUtils;
 import com.gsd.sreenidhi.utils.SendMail;
+
+import java.security.SecureRandom;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * @author Sreenidhi, Gundlupet
@@ -59,8 +63,15 @@ public class Cognator extends CheetahEngine {
 	 * @return Random String
 	 */
 	public static String generateRandomStringAlphabetsOnly(final int length) {
-		String randomString = RandomStringUtils.randomAlphabetic(length);
-		return randomString;
+	    if (length <= 0) {
+	        throw new IllegalArgumentException("Length must be positive");
+	    }
+
+	    Random random = new SecureRandom();
+	    return IntStream.range(0, length)
+	                    .map(i -> 'A' + random.nextInt(26)) // Generate a random integer and add to 'A' for uppercase letters
+	                    .mapToObj(c -> String.valueOf((char) c)) // Convert integer to character and then to String
+	                    .collect(Collectors.joining()); // Join everything into a single string
 	}
 
 	/**
@@ -72,8 +83,20 @@ public class Cognator extends CheetahEngine {
 	 * @return Random String
 	 */
 	public static String generateRandomStringAlphaNumeric(final int length) {
-		String randomString = RandomStringUtils.randomAlphanumeric(length);
-		return randomString;
+	    if (length <= 0) {
+	        throw new IllegalArgumentException("Length must be positive");
+	    }
+
+	    Random random = new SecureRandom();
+	    return IntStream.range(0, length)
+	                    .map(i -> random.nextInt(26 * 2)) // Generate a random integer for alphabets (uppercase + lowercase)
+	                    .mapToObj(n -> {
+	                        if (n < 26) return (char) ('A' + n); // Uppercase letters
+	                        else if (n < 52) return (char) ('a' + (n - 26)); // Lowercase letters
+	                        else return (char) ('0' + (n - 52)); // Numbers
+	                    })
+	                    .map(Object::toString)
+	                    .collect(Collectors.joining()); // Join everything into a single string
 	}
 
 	/**
@@ -85,8 +108,19 @@ public class Cognator extends CheetahEngine {
 	 * @return Random String
 	 */
 	public static String generateRandomStringSpecialAlphaNumeric(final int length) {
-		String randomString = RandomStringUtils.randomAscii(length);
-		return randomString;
+	    if (length <= 0) {
+	        throw new IllegalArgumentException("Length must be positive");
+	    }
+
+	    Random random = new SecureRandom();
+	    // Define the range of ASCII printable characters (from space to ~)
+	    int startAscii = 32; // ASCII for space
+	    int endAscii = 126; // ASCII for ~
+
+	    return IntStream.range(0, length)
+	                    .map(i -> startAscii + random.nextInt(endAscii - startAscii + 1))
+	                    .mapToObj(c -> String.valueOf((char) c))
+	                    .collect(Collectors.joining());
 	}
 
 	/**

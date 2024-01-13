@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Properties;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 import com.gsd.sreenidhi.cheetah.exception.CheetahException;
 import com.gsd.sreenidhi.forms.Constants;
 import com.gsd.sreenidhi.utils.Base64Encoding;
 import com.gsd.sreenidhi.utils.SSLUtilities;
-import com.sun.deploy.net.proxy.BrowserProxyInfo;
-import com.sun.deploy.net.proxy.ProxyConfigException;
-import com.sun.deploy.net.proxy.ProxyInfo;
-import com.sun.deploy.net.proxy.ProxyType;
-import com.sun.deploy.net.proxy.ProxyUnavailableException;
-import com.sun.deploy.net.proxy.*;
 
 /**
  * @author Sreenidhi, Gundlupet
@@ -243,42 +243,28 @@ public class FrameworkOps extends CheetahEngine {
 
 	}
 
-	/**
-	 * @param pacFile Pac File
-	 * @return Proxy URL from PAC
-	 * @throws CheetahException Generic Exception Object that handles all exceptions
-	 */
-	public String getProxyDetailsFromPac(String pacFile) throws CheetahException {
-		String proxy = null;
-		String pac_file = pacFile;
-		BrowserProxyInfo b = new BrowserProxyInfo();
+	public String getProxyDetailsFromPac(String pacFilePath) throws CheetahException {
+        try {
+            // Read PAC file content
+            String pacScript = new String(Files.readAllBytes(Paths.get(pacFilePath)));
 
-		try {
-			b.setType(ProxyType.AUTO);
-			b.setAutoConfigURL(pac_file);
-			CheetahEngine.logger.breakLine();
-			CheetahEngine.logger.logMessage(null, this.getClass().getName(),
-					"Retrieving proxy from Pac File: " + pac_file, Constants.LOG_INFO, false);
+            // Create a script engine manager
+            ScriptEngineManager manager = new ScriptEngineManager();
+            ScriptEngine engine = manager.getEngineByName("nashorn");
 
-			SunAutoProxyHandler handler = new SunAutoProxyHandler();
-			handler.init(b);
+            // Define the 'FindProxyForURL' function
+            engine.eval(pacScript);
+            
+            String urlToEvaluate =  new URL(props.getProperty("app.env.url")).toString();
 
-			ProxyInfo[] ps;
-
-			ps = handler.getProxyInfo(new URL(props.getProperty("app.env.url")));
-
-			for (ProxyInfo p : ps) {
-				CheetahEngine.logger.logMessage(null, this.getClass().getName(),
-						"Proxy URL from Pac File: " + p.toString(), Constants.LOG_INFO, false);
-				proxy = p.toString();
-			}
-		} catch (MalformedURLException | ProxyConfigException | ProxyUnavailableException e) {
-			throw new CheetahException(e);
-		}
-		return proxy;
-
-	}
-
+            // Evaluate the given URL
+            String script = String.format("FindProxyForURL('%s', '%s')", urlToEvaluate, new URL(urlToEvaluate).getHost());
+            return (String) engine.eval(script);
+        } catch (ScriptException | java.io.IOException e) {
+            throw new CheetahException("Error evaluating PAC file: " + e.getMessage(), e);
+        }
+    }
+	
 	/**
 	 * Reset Proxy
 	 * 
